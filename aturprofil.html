@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atur Profil</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .edit-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .profile-pic {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input:disabled,
+        textarea:disabled {
+            background-color: #f7f7f7;
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .minat-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 5px;
+        }
+
+        .minat-buttons span {
+            padding: 6px 12px;
+            background: #eee;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .minat-buttons span.selected {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-simpan {
+            width: 100%;
+            padding: 10px;
+            background-color: #d32f2f;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn-simpan:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #confirmPasswordGroup {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Profil</h2>
+        <div class="edit-icon" onclick="toggleEdit()">✎</div>
+
+        <div class="profile-pic">👤</div>
+
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" value="Yuki Kimo" disabled>
+
+        <label for="alamat">Alamat</label>
+        <input type="text" id="alamat" value="Jl. asmoro , No.23 Perum graha ashita" disabled>
+
+        <label for="telepon">No Telepon</label>
+        <input type="text" id="telepon" value="0863785828" disabled>
+
+        <label>Minat</label>
+        <div class="minat-buttons" id="minatGroup">
+            <span class="selected">Kesehatan</span>
+            <span class="selected">Pendidikan</span>
+            <span class="selected">Lingkungan</span>
+            <span>Kemanusiaan</span>
+            <span>Advokasi</span>
+            <span>Penanggulangan Bencana</span>
+        </div>
+
+        <label for="pengalaman">Pengalaman</label>
+        <textarea id="pengalaman"
+            disabled>Berpartisipasi dalam beberapa kegiatan sosial di sekolah dan komunitas lingkungan.</textarea>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" value="******" disabled>
+
+        <div id="confirmPasswordGroup">
+            <label for="confirmPassword">Konfirmasi Password</label>
+            <input type="password" id="confirmPassword">
+        </div>
+
+        <button class="btn-simpan" id="simpanBtn" onclick="simpanProfil()" disabled>Simpan</button>
+    </div>
+
+    <script>
+        let isEditing = false;
+
+        function toggleEdit() {
+            isEditing = !isEditing;
+
+            const fields = ['nama', 'alamat', 'telepon', 'pengalaman', 'password'];
+            fields.forEach(id => {
+                document.getElementById(id).disabled = !isEditing;
+            });
+
+            document.getElementById('simpanBtn').disabled = !isEditing;
+            document.getElementById('confirmPasswordGroup').style.display = isEditing ? 'block' : 'none';
+            document.getElementById('confirmPassword').value = '';
+
+            // Aktifkan pilihan minat
+            document.querySelectorAll('#minatGroup span').forEach(el => {
+                el.style.pointerEvents = isEditing ? 'auto' : 'none';
+                el.style.opacity = isEditing ? '1' : '0.6';
+            });
+        }
+
+        // Toggle pilihan minat
+        document.querySelectorAll('#minatGroup span').forEach(item => {
+            item.addEventListener('click', () => {
+                if (!isEditing) return;
+                item.classList.toggle('selected');
+            });
+        });
+
+        function simpanProfil() {
+            const confirmPwd = document.getElementById('confirmPassword').value;
+            const currentPwd = "******"; // Simulasi password sekarang
+
+            if (!confirmPwd) {
+                alert("⚠️ Harap isi konfirmasi password terlebih dahulu.");
+                return;
+            }
+
+            if (confirmPwd !== currentPwd) {
+                alert("❌ Konfirmasi password tidak sesuai.");
+                return;
+            }
+
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const telepon = document.getElementById('telepon').value;
+            const pengalaman = document.getElementById('pengalaman').value;
+            const minat = Array.from(document.querySelectorAll('.minat-buttons span.selected')).map(el => el.innerText);
+
+            alert("✅ Data berhasil disimpan:\n" +
+                `Nama: ${nama}\nAlamat: ${alamat}\nTelepon: ${telepon}\nMinat: ${minat.join(', ')}\nPengalaman: ${pengalaman}`);
+
+            toggleEdit();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Relawan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            color: #333;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #7b1fa2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .stats div {
+            background-color: #f0f0f0;
+            padding: 15px;
+            flex: 1;
+            text-align: center;
+            margin: 0 5px;
+            border-radius: 10px;
+        }
+
+        .switch-section {
+            margin-top: 30px;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .slider-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .slider-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 30px;
+            transition: 0.4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        input:checked+.slider {
+            background-color: #007bff;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+
+        .available-time {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .available-time input {
+            padding: 10px;
+            width: 100%;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .confirmation-message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+            color: #d32f2f;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .btn.logout {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Profil Relawan</h1>
+    </header>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar">S</div>
+            <div>
+                <div class="name">Sinta Febriyanti</div>
+                <div>Tergabung sejak 10 jam yang lalu</div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div>
+                <strong>0</strong><br>Aktivitas Diikuti
+            </div>
+            <div>
+                <strong>0</strong><br>Total Jam Kerja
+            </div>
+        </div>
+
+        <div class="switch-section">
+            <div class="switch-container">
+                <label><strong>Aktifkan Pengantar Rekomendasi</strong></label>
+                <label class="slider-switch">
+                    <input type="checkbox" id="pengantarSwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="available-time" id="waktuLuang">
+                <label for="waktu">Waktu Luang / Tanggal Tersedia</label>
+                <input type="date" id="waktu">
+            </div>
+
+            <div class="confirmation-message" id="konfirmasiText">
+                ✅ Anda akan direkomendasikan
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Atur Profil</h3>
+            <a href="aturprofil.html" class="btn">Edit Profil</a><br>
+            <a href="login.html" class="btn logout">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        const pengantarSwitch = document.getElementById("pengantarSwitch");
+        const waktuLuang = document.getElementById("waktuLuang");
+        const waktuInput = document.getElementById("waktu");
+        const konfirmasiText = document.getElementById("konfirmasiText");
+
+        pengantarSwitch.addEventListener("change", () => {
+            if (pengantarSwitch.checked) {
+                waktuLuang.style.display = "block";
+                waktuInput.focus();
+
+                waktuInput.addEventListener("change", () => {
+                    if (waktuInput.value) {
+                        const yakin = confirm("Anda yakin ingin diikutsertakan dalam rekomendasi?");
+                        if (yakin) {
+                            konfirmasiText.style.display = "block";
+                        } else {
+                            pengantarSwitch.checked = false;
+                            waktuLuang.style.display = "none";
+                            waktuInput.value = "";
+                            konfirmasiText.style.display = "none";
+                        }
+                    }
+                });
+            } else {
+                waktuLuang.style.display = "none";
+                konfirmasiText.style.display = "none";
+                waktuInput.value = "";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Teman Relawan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body, html {
+      height: 100%;
+    }
+    .login-page {
+      display: flex;
+      height: 100vh;
+    }
+    .login-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .login-right {
+      flex: 1;
+      background: url('img/relawan.png') no-repeat center center;
+      background-size: cover;
+    }
+    .logo {
+      max-width: 120px;
+      margin-bottom: 1rem;
+    }
+    .title-text {
+      color: #5a67d8;
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    .is-google {
+      color: #4285F4;
+      font-weight: bold;
+    }
+    .icon.is-clickable {
+      cursor: pointer;
+    }
+    .google-button {
+      border: 1px solid #ccc;
+      background-color: white;
+      color: #444;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .google-button:hover {
+      background-color: #f5f5f5;
+      border-color: #aaa;
+    }
+    .is-hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-page">
+  <!-- Kiri: Form login -->
+  <div class="login-left">
+    <img src="img/logo.png" alt="Teman Relawan Logo" class="logo">
+    <p class="title-text mb-4">Cari & hubungi relawan<br>kegiatan sosial dengan mudah!</p>
+
+    <form onsubmit="return validateForm(event)">
+      <div class="field">
+        <div class="control has-icons-left">
+          <input id="username" class="input" type="text" placeholder="Username">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+        <p id="usernameError" class="help is-danger is-hidden">Username wajib diisi</p>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input id="password" class="input" type="password" placeholder="Password">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+          <span class="icon is-small is-right is-clickable" onclick="togglePassword()">
+            <i id="toggleIcon" class="fas fa-eye"></i>
+          </span>
+        </div>
+        <p id="passwordError" class="help is-danger is-hidden">Password wajib diisi</p>
+        <p class="has-text-right mt-1"><a href="lupa-password.html">Lupa Password?</a></p>
+      </div>
+
+      <div class="field is-grouped mt-4">
+        <div class="control is-expanded">
+          <button type="submit" class="button is-link is-fullwidth">Login</button>
+        </div>
+        <div class="control is-expanded">
+          <button type="button" class="button is-light is-fullwidth" style="background-color: #8ba4f4; color: white; font-weight: bold;" onclick="window.location.href='registrasi.html'">
+            Registrasi
+          </button>
+        </div>
+      </div>
+
+      <div class="has-text-centered mt-4">
+        <p>Atau login dengan</p>
+        <a href="google-login.html" class="button is-fullwidth google-button mt-2">
+          <span class="icon">
+            <i class="fab fa-google"></i>
+          </span>
+          <span>Google</span>
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Kanan: Gambar background -->
+  <div class="login-right"></div>
+</div>
+
+<!-- Script -->
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const icon = document.getElementById('toggleIcon');
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+  }
+
+  function validateForm(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+
+    let valid = true;
+
+    if (username.value.trim() === '') {
+      usernameError.classList.remove('is-hidden');
+      valid = false;
+    } else {
+      usernameError.classList.add('is-hidden');
+    }
+
+    if (password.value.trim() === '') {
+      passwordError.classList.remove('is-hidden');
+      valid = false;
+    } else {
+      passwordError.classList.add('is-hidden');
+    }
+
+    if (valid) {
+      alert("Login berhasil!");
+      window.location.href = "dashboard.html";
+    }
+
+    return false;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrasi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container-flex {
+      display: flex;
+      height: 100vh;
+    }
+    .logo {
+      max-width: 120px;
+      margin-bottom: 1rem;
+    }
+    .left-panel {
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+    }
+    .right-panel {
+      flex: 1;
+      background: url('img/regis.png') no-repeat center center;
+      background-size: cover;
+    }
+    .title {
+      color: #8ba4f4;
+      font-weight: bold;
+    }
+    .input-box {
+      margin-bottom: 1rem;
+    }
+    .help.is-danger {
+      color: red;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .button.is-primary {
+      background-color: #8ba4f4;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .icon.is-left i {
+      color: #363636;
+    }
+     .back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .back-button:hover {
+      color: #8ba4f4;
+    }
+  </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="window.location.href='login.html'">
+        <i class="fas fa-arrow-left"></i>Kembali
+      </button>
+      
+  <div class="container-flex">
+    <!-- Panel kiri -->
+    <div class="left-panel">
+      <img src="img/logo.png" alt="Teman Relawan Logo" class="logo">
+      <h1 class="title is-4">Teman Relawan</h1>
+      <p class="mb-4">Isi data diri kamu</p>
+
+      <div class="field input-box">
+        <p class="control has-icons-left">
+          <input class="input" id="nama" type="text" placeholder="Nama">
+          <span class="icon is-left"><i class="fas fa-user"></i></span>
+        </p>
+        <p class="help is-danger" id="error-nama">Nama wajib diisi</p>
+      </div>
+
+      <div class="field input-box">
+        <p class="control has-icons-left">
+          <input class="input" id="alamat" type="text" placeholder="Alamat">
+          <span class="icon is-left"><i class="fas fa-location-dot"></i></span>
+        </p>
+        <p class="help is-danger" id="error-alamat">Alamat wajib diisi</p>
+      </div>
+
+      <div class="field input-box">
+        <p class="control has-icons-left">
+          <input class="input" id="email" type="email" placeholder="E-mail">
+          <span class="icon is-left"><i class="fas fa-envelope"></i></span>
+        </p>
+        <p class="help is-danger" id="error-email">Email wajib diisi</p>
+      </div>
+
+      <div class="field input-box">
+        <p class="control has-icons-left">
+          <input class="input" id="password" type="password" placeholder="Password">
+          <span class="icon is-left"><i class="fas fa-lock"></i></span>
+        </p>
+        <p class="help is-danger" id="error-password">Password wajib diisi</p>
+      </div>
+
+      <div class="field input-box">
+        <p class="control has-icons-left">
+          <input class="input" id="ulangPassword" type="password" placeholder="Ulang Password">
+          <span class="icon is-left"><i class="fas fa-lock"></i></span>
+        </p>
+        <p class="help is-danger" id="error-ulangPassword">Konfirmasi password wajib diisi</p>
+      </div>
+
+      <div class="field">
+        <button class="button is-primary" id="submitBtn">Daftar</button>
+        <button class="button button-back" onclick="window.location.href='login.html'">Kembali</button>
+      </div>
+    </div>
+
+    <!-- Panel kanan -->
+    <div class="right-panel"></div>
+  </div>
+
+  <!-- Script validasi -->
+  <script>
+    const fields = [
+      { id: 'nama', errorId: 'error-nama' },
+      { id: 'alamat', errorId: 'error-alamat' },
+      { id: 'email', errorId: 'error-email' },
+      { id: 'password', errorId: 'error-password' },
+      { id: 'ulangPassword', errorId: 'error-ulangPassword' }
+    ];
+
+    document.getElementById('submitBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const error = document.getElementById(field.errorId);
+
+        if (input.value.trim() === '') {
+          error.style.display = 'block';
+          valid = false;
+        } else {
+          error.style.display = 'none';
+        }
+      });
+
+      if (valid) {
+        alert("Pendaftaran berhasil!");
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>

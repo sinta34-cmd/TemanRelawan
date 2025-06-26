@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User - Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #a7cbff;
+        }
+
+        .sidebar {
+            width: 150px;
+            background-color: #82b1f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .sidebar img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: black;
+            margin: 10px 0;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .topbar {
+            background-color: #b4d3ff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #dfe9ff;
+        }
+
+        tr:nth-child(odd) td {
+            background-color: #29357c;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo Teman Relawan">
+        <a href="#" class="active">👤<br>USER</a>
+        <a href="#">👥<br>DATA USER</a>
+        <a href="#">📑<br>RIWAYAT KEGIATAN</a>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="title">WELCOME ADMIN<br><small>USER</small></div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Pricing</a>
+            </nav>
+        </div>
+
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Dewi Pujiyanti</td>
+                        <td>pujjanti1234@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Chelsea Anggita</td>
+                        <td>gitaaa89129@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Rio Ardianto</td>
+                        <td>ardi_anto128@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Danang Giri</td>
+                        <td>dananggiri@gmail01.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Relawanku</td>
+                        <td>Admin123@gmail.com</td>
+                        <td>Admin</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

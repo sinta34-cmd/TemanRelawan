@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Relawan - Teman Relawan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #eef7ff;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        header h1,
+        header p,
+        .header-icons {
+            position: relative;
+            z-index: 1;
+        }
+
+        header img.logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px;
+            z-index: 2;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+            animation: moveRight 20s linear infinite;
+            z-index: 1;
+        }
+
+        .header-icons img {
+            width: 60px;
+            height: auto;
+        }
+
+        .ground-line {
+            height: 5px;
+            width: 100%;
+            background: #444;
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+        }
+
+        @keyframes moveRight {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+            margin-top: 30px;
+        }
+
+        .relawan-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+
+        .relawan-card {
+            background-color: #d6ecff;
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            gap: 20px;
+            position: relative;
+        }
+
+        .relawan-foto {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        .relawan-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-detail {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        .relawan-detail {
+            display: none;
+            margin-top: 10px;
+            background-color: #ffffffcc;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .tag {
+            background-color: #007BFF;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="img/logo.png" class="logo" alt="Logo">
+        <h1>Teman Relawan</h1>
+        <p>Daftar Anggota Relawan</p>
+        <div class="header-icons">
+            <img src="img/267665adb49f882d4f05070a862bae8d-removebg-preview.png" alt="ikon1">
+            <img src="img/ed53ab083b682d35128046946c0ba173-removebg-preview.png" alt="ikon2">
+            <img src="img/images__1_-removebg-preview (2).png" alt="ikon3">
+        </div>
+        <div class="ground-line"></div>
+    </header>
+
+    <h2>Relawan Terdaftar</h2>
+
+    <div class="relawan-container">
+
+        <div class="relawan-card">
+            <img src="img/foto1.jpg" alt="Rina Wijaya" class="relawan-foto">
+            <div class="relawan-info">
+                <div class="info-header">
+                    <strong>Rina Wijaya</strong>
+                    <button class="toggle-detail" title="Lihat Biodata">👁️</button>
+                </div>
+                <div class="relawan-detail">
+                    <p><strong>Alamat:</strong> Jakarta Selatan</p>
+                    <p><strong>Telepon:</strong> 0812-3456-7890</p>
+                    <p><strong>Minat:</strong></p>
+                    <div class="tag-container">
+                        <span class="tag">Pendidikan</span>
+                        <span class="tag">Lingkungan</span>
+                    </div>
+                    <p><strong>Pengalaman:</strong> 3 tahun kegiatan sosial</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relawan-card">
+            <img src="img/foto2.jpg" alt="Budi Santoso" class="relawan-foto">
+            <div class="relawan-info">
+                <div class="info-header">
+                    <strong>Budi Santoso</strong>
+                    <button class="toggle-detail" title="Lihat Biodata">👁️</button>
+                </div>
+                <div class="relawan-detail">
+                    <p><strong>Alamat:</strong> Bandung</p>
+                    <p><strong>Telepon:</strong> 0821-5555-6666</p>
+                    <p><strong>Minat:</strong></p>
+                    <div class="tag-container">
+                        <span class="tag">Lingkungan</span>
+                        <span class="tag">Kesehatan</span>
+                        <span class="tag">Bencana Alam</span>
+                    </div>
+                    <p><strong>Pengalaman:</strong> 5 tahun relawan bencana</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.toggle-detail').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const detail = btn.closest('.relawan-info').querySelector('.relawan-detail');
+                const isVisible = detail.style.display === 'block';
+                detail.style.display = isVisible ? 'none' : 'block';
+                btn.textContent = isVisible ? '👁️' : '🙈';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

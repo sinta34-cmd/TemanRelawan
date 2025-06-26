@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Relawan Go - Teman Relawan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        .checkbox-group span {
+            display: inline-block;
+            margin: 4px;
+            padding: 6px 12px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group span.selected {
+            background-color: #0056b3;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Relawan Go</h1>
+        <p>Tambah Kegiatan Sosial & Rekomendasi Relawan</p>
+    </header>
+
+    <div class="container">
+        <form id="kegiatanForm" action="rekomendasi.html" method="get">
+            <div class="form-group">
+                <label>Nama Kegiatan</label>
+                <input type="text" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea name="deskripsi" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Detail Kegiatan</label>
+                <input type="text" name="detail">
+            </div>
+            <div class="form-group">
+                <label>Jenis Kegiatan Sosial</label>
+                <div class="checkbox-group" id="jenisKegiatan">
+                    <span data-value="Pendidikan">Pendidikan</span>
+                    <span data-value="Kemanusiaan">Kemanusiaan</span>
+                    <span data-value="Lingkungan">Lingkungan</span>
+                    <span data-value="Advokasi">Advokasi</span>
+                    <span data-value="Tanggap Bencana">Tanggap Bencana</span>
+                    <span data-value="Kesehatan">Kesehatan</span>
+                    <span data-value="Budaya">Budaya</span>
+                </div>
+                <input type="hidden" name="jenis" id="inputJenis">
+            </div>
+            <div class="form-group">
+                <label>Jumlah Relawan yang Dibutuhkan</label>
+                <input type="number" name="jumlah">
+            </div>
+            <div class="form-group">
+                <label>Lokasi Kegiatan</label>
+                <input type="text" name="lokasi">
+            </div>
+            <div class="form-group">
+                <label>Hari/Tanggal</label>
+                <input type="date" name="tanggal">
+            </div>
+            <div class="form-group">
+                <label>Waktu</label>
+                <input type="time" name="waktu">
+            </div>
+            <div class="form-group">
+                <label>Kriteria Pengalaman Relawan</label>
+                <select name="pengalaman" required>
+                    <option value="">-- Pilih Pengalaman --</option>
+                    <option value="Pemula">Pemula</option>
+                    <option value="Menengah">Menengah</option>
+                    <option value="Berpengalaman">Berpengalaman</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Gambar</label>
+                <input type="file" name="gambar">
+            </div>
+            <button type="submit">Tambah Kegiatan</button>
+        </form>
+    </div>
+
+    <script>
+        const selectedJenis = [];
+        document.querySelectorAll('#jenisKegiatan span').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('selected');
+                const val = item.getAttribute('data-value');
+                if (selectedJenis.includes(val)) {
+                    selectedJenis.splice(selectedJenis.indexOf(val), 1);
+                } else {
+                    selectedJenis.push(val);
+                }
+                document.getElementById('inputJenis').value = selectedJenis.join(', ');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Kegiatan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #eef6ff;
+        }
+
+        .sidebar {
+            width: 150px;
+            background-color: #82b1f9;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            color: black;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .main {
+            margin-left: 150px;
+        }
+
+        .topbar {
+            background-color: #b4d3ff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .detail {
+            display: none;
+            margin-top: 15px;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .gallery img {
+            max-width: 100px;
+            margin: 5px;
+            border-radius: 6px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo">
+        <a href="#">👤<br>USER</a>
+        <a href="#">👥<br>DATA USER</a>
+        <a href="#" class="active">📑<br>RIWAYAT KEGIATAN</a>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <div class="title">WELCOME ADMIN<br><small>RIWAYAT KEGIATAN</small></div>
+        </div>
+        <div class="content">
+
+            <div class="card" onclick="toggleDetail(this)">
+                <h3>Bersih Yuk</h3>
+                <p>27 Juni 2026 - Kali Pepe, Solo</p>
+                <div class="detail">
+                    <p><strong>Deskripsi:</strong> Aksi bersih-bersih sungai bersama komunitas peduli lingkungan dalam
+                        rangka memperingati Hari Lingkungan Hidup.</p>
+                    <p><strong>Hari:</strong> Sabtu, 27 Juni 2026</p>
+                    <p><strong>Relawan yang ikut serta:</strong></p>
+                    <ul>
+                        <li>Dimas Setiawan</li>
+                        <li>Sari Lestari</li>
+                        <li>Fajar Nugroho</li>
+                        <li>Arif Setyo</li>
+                        <li>Lina Putri</li>
+                    </ul>
+                    <p><strong>Laporan:</strong> Kegiatan berjalan lancar. Total 50 kg sampah berhasil dikumpulkan dari
+                        sungai dan area sekitar. Antusiasme masyarakat sangat tinggi. Didokumentasikan oleh tim media.
+                    </p>
+                    <div class="gallery">
+                        <img src="img/bersih1.jpg" alt="Foto 1">
+                        <img src="img/bersih2.jpg" alt="Foto 2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="toggleDetail(this)">
+                <h3>Tanam Pohon Bersama</h3>
+                <p>15 Juli 2026 - Taman Hutan Kota</p>
+                <div class="detail">
+                    <p><strong>Deskripsi:</strong> Penanaman 200 bibit pohon bersama siswa sekolah dan relawan
+                        lingkungan dalam rangka program penghijauan kota.</p>
+                    <p><strong>Hari:</strong> Senin, 15 Juli 2026</p>
+                    <p><strong>Relawan yang ikut serta:</strong></p>
+                    <ul>
+                        <li>Bayu Pratama</li>
+                        <li>Intan Sari</li>
+                        <li>Rani Melati</li>
+                        <li>Dino Saputra</li>
+                        <li>Alia Kusuma</li>
+                    </ul>
+                    <p><strong>Laporan:</strong> Total 200 pohon berhasil ditanam di area hutan kota. Kegiatan ini
+                        melibatkan 3 sekolah dan 25 relawan. Dokumentasi telah disimpan di galeri pusat dan media sosial
+                        resmi Teman Relawan.</p>
+                    <div class="gallery">
+                        <img src="img/tanam1.jpg" alt="Foto 1">
+                        <img src="img/tanam2.jpg" alt="Foto 2">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleDetail(card) {
+            const detail = card.querySelector('.detail');
+            detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dokumentasi - Bagi Sembako</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            color: #333;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        header h1,
+        header p {
+            position: relative;
+            z-index: 1;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #0077cc;
+            margin-top: 30px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #0077cc;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bagi Sembako</h1>
+        <p>Dokumentasi kegiatan berbagi paket sembako untuk warga Bekasi</p>
+    </header>
+    <main>
+        <h2>Deskripsi Kegiatan</h2>
+        <p>
+            Kegiatan ini merupakan bentuk kepedulian sosial untuk membantu masyarakat kurang mampu dengan membagikan 300
+            paket sembako kepada warga di beberapa wilayah di Bekasi.
+        </p>
+
+        <h2>Waktu Pelaksanaan</h2>
+        <p>
+            📅 Tanggal: 12 Mei 2026<br>
+            🕒 Waktu: 08.00 - 11.00 WIB<br>
+            📍 Lokasi: Kelurahan Harapan Baru, Bekasi
+        </p>
+
+        <h2>Jalannya Kegiatan</h2>
+        <p>
+            Kegiatan dimulai dengan apel bersama dan pembagian tim relawan ke titik lokasi. Setiap relawan bertugas
+            membagikan paket sembako langsung ke rumah warga secara teratur dan ramah. Kegiatan berlangsung tertib dan
+            lancar.
+        </p>
+
+        <h2>Foto Dokumentasi</h2>
+        <div class="gallery">
+            <img src="images/sembako1.jpg" alt="Pembagian sembako 1">
+            <img src="images/sembako2.jpg" alt="Pembagian sembako 2">
+            <img src="images/sembako3.jpg" alt="Pembagian sembako 3">
+        </div>
+
+        <h2>Relawan yang Mengikuti</h2>
+        <ul>
+            <li>Sari Ayu</li>
+            <li>Rendi Saputra</li>
+            <li>Nanda Oktavia</li>
+            <li>Bambang Cahyono</li>
+            <li>Putri Maharani</li>
+        </ul>
+    </main>

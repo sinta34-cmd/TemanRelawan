@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data User - Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #a7cbff;
+        }
+
+        .sidebar {
+            width: 150px;
+            background-color: #82b1f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        .sidebar img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: black;
+            margin: 10px 0;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .topbar {
+            background-color: #b4d3ff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tr:nth-child(odd) td {
+            background-color: #29357c;
+            color: white;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #dfe9ff;
+        }
+
+        .stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars span {
+            color: gold;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo Teman Relawan">
+        <a href="#">👤<br>USER</a>
+        <a href="#" class="active">👥<br>DATA USER</a>
+        <a href="#">📑<br>RIWAYAT KEGIATAN</a>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <div class="title">WELCOME ADMIN<br><small>USER</small></div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Pricing</a>
+            </nav>
+        </div>
+        <div class="content">
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Minat Pengalaman</th>
+                        <th>Email</th>
+                        <th>No. Telpon</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody id="userBody">
+                    <!-- Data user akan di-render oleh JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const users = [
+            { nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "Sucipto234@gmail.com", telp: "081556789345", rating: 3 },
+            { nama: "Rehan Mahendra", alamat: "Solo", pengalaman: "Dapur Umum Saat Bencana", email: "hendra0908@gmail.com", telp: "085776231557", rating: 3 },
+            { nama: "Dwi Utomo", alamat: "Surakarta", pengalaman: "Penggalangan Dana Bencana", email: "dwi4519022@gmail.com", telp: "085342769775", rating: 2 },
+            { nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "erikS889032@gmail.com", telp: "081667543980", rating: 4 },
+            { nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusP230999@gmail.com", telp: "081778982223", rating: 5 },
+            { nama: "Ahamd Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Healt", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 }
+        ];
+
+        function renderUsers() {
+            const sortedUsers = users.sort((a, b) => b.rating - a.rating);
+            const tbody = document.getElementById("userBody");
+            tbody.innerHTML = "";
+
+            sortedUsers.forEach((user, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${user.nama}</td>
+          <td>${user.alamat}</td>
+          <td>${user.pengalaman}</td>
+          <td>${user.email}</td>
+          <td>${user.telp}</td>
+          <td class="stars">${[...Array(5)].map((_, i) => `<span onclick="changeRating(${index}, ${i + 1})">${i < user.rating ? '★' : '☆'}</span>`).join('')}</td>
+        `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function changeRating(index, newRating) {
+            users[index].rating = newRating;
+            renderUsers();
+        }
+
+        renderUsers();
+    </script>
+</body>
+
+</html>

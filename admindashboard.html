@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Teman Relawan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #b3d4fc;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 100px;
+            background-color: #88b5f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            margin: 15px 0;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            height: 60px;
+            background-color: #a4cbf9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .topbar nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .content {
+            flex: 1;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .bike {
+            width: 200px;
+            position: absolute;
+            bottom: 20px;
+            animation: ride 10s linear infinite;
+        }
+
+        @keyframes ride {
+            0% {
+                left: -220px;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo Teman Relawan">
+        <a href="#">👤<br>User</a>
+        <a href="#">👥<br>Data User</a>
+        <a href="#">📑<br>Riwayat Kegiatan</a>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div class="welcome">WELCOME ADMIN</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Pricing</a>
+            </nav>
+        </div>
+        <div class="content">
+            <img src="bike.png" alt="Bersepeda" class="bike">
+        </div>
+    </div>
+</body>
+
+</html>

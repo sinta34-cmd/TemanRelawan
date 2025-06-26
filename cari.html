@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cari Aktivitas - Teman Relawan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            color: #333;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        header h1 {
+            margin: 0;
+        }
+
+        .search-section {
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filters select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        h2 {
+            padding: 20px 20px 0;
+            margin: 0;
+            color: #0077cc;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .activity-card {
+            background: white;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .activity-card:hover {
+            transform: scale(1.02);
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .activity-info {
+            padding: 15px;
+        }
+
+        .activity-info h3 {
+            margin: 0;
+            color: #0077cc;
+        }
+
+        .activity-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Cari Aktivitas Relawan</h1>
+        <p>Temukan kegiatan sosial yang sesuai minat dan pengalamanmu</p>
+    </header>
+
+    <div class="search-section">
+        <input type="text" placeholder="🔍 Cari berdasarkan judul, lokasi, atau deskripsi...">
+
+        <div class="filters">
+            <select>
+                <option value="">🔖 Jenis Kegiatan</option>
+                <option>Lingkungan</option>
+                <option>Pendidikan</option>
+                <option>Sosial</option>
+                <option>Kesehatan</option>
+            </select>
+
+            <select>
+                <option value="">🧭 Pengalaman Relawan</option>
+                <option>Pemula</option>
+                <option>Menengah</option>
+                <option>Berpengalaman</option>
+            </select>
+        </div>
+    </div>
+
+    <h2>Rekomendasi Aktivitas</h2>
+    <div class="activity-list">
+        <div class="activity-card" onclick="location.href='detail-tanampohon.html'">
+            <img src="img/pohon.jpeg" alt="Tanam Pohon">
+            <div class="activity-info">
+                <h3>Tanam Pohon</h3>
+                <p>🗓️ 10 Juli 2026</p>
+                <p>📍 Yogyakarta</p>
+            </div>
+        </div>
+
+        <div class="activity-card" onclick="location.href='detail-bersih.html'">
+            <img src="img/bersih.jpeg" alt="Bersih Sungai">
+            <div class="activity-info">
+                <h3>Bersih Yuk</h3>
+                <p>🗓️ 27 Juni 2026</p>
+                <p>📍 Solo</p>
+            </div>
+        </div>
+
+        <div class="activity-card" onclick="location.href='detail-gowes.html'">
+            <img src="img/gowes.jpeg" alt="Gowes Sehat">
+            <div class="activity-info">
+                <h3>Gowes Sehat</h3>
+                <p>🗓️ 5 Agustus 2026</p>
+                <p>📍 Semarang</p>
+            </div>
+        </div>
+
+        <div class="activity-card" onclick="location.href='detail-kelasbelajar.html'">
+            <img src="img/mengajar.jpeg" alt="Kelas Belajar Anak">
+            <div class="activity-info">
+                <h3>Kelas Belajar Anak</h3>
+                <p>🗓️ 30 April 2026</p>
+                <p>📍 Tangerang</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

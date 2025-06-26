@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rekomendasi Relawan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            margin: 0;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .relawan-card {
+            background-color: #d6ecff;
+            border-radius: 15px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .relawan-card.selected {
+            border: 2px solid #007BFF;
+            background-color: #b4dbff;
+        }
+
+        .relawan-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .relawan-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .relawan-name {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .biodata {
+            display: none;
+            padding-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .eye-icon {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+        }
+
+        #sendIcon {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #sendIcon img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Rekomendasi Relawan</h1>
+        <p>Daftar Anggota Relawan</p>
+    </header>
+
+    <div class="container" id="relawanContainer">
+        <div class="relawan-card" ondblclick="toggleSelect(this)">
+            <div class="relawan-info">
+                <div class="relawan-img">Rina<br>Wijaya</div>
+                <div>
+                    <div class="relawan-name">Rina Wijaya</div>
+                    <div class="biodata">
+                        <p><strong>Minat:</strong> Pendidikan, Lingkungan</p>
+                        <p><strong>Alamat:</strong> Jakarta</p>
+                        <p><strong>Telepon:</strong> 08123456789</p>
+                        <p><strong>Email:</strong> rina@mail.com</p>
+                        <p><strong>Pengalaman:</strong> 3 tahun jadi relawan lingkungan</p>
+                    </div>
+                </div>
+            </div>
+            <img src="img/eye.png" class="eye-icon" onclick="toggleBiodata(this)">
+        </div>
+
+        <div class="relawan-card" ondblclick="toggleSelect(this)">
+            <div class="relawan-info">
+                <div class="relawan-img">Budi<br>Santoso</div>
+                <div>
+                    <div class="relawan-name">Budi Santoso</div>
+                    <div class="biodata">
+                        <p><strong>Minat:</strong> Kesehatan, Bencana</p>
+                        <p><strong>Alamat:</strong> Bandung</p>
+                        <p><strong>Telepon:</strong> 08234567890</p>
+                        <p><strong>Email:</strong> budi@mail.com</p>
+                        <p><strong>Pengalaman:</strong> 5 tahun di kegiatan medis</p>
+                    </div>
+                </div>
+            </div>
+            <img src="img/eye.png" class="eye-icon" onclick="toggleBiodata(this)">
+        </div>
+    </div>
+
+    <div id="sendIcon" onclick="kirimEmail()">
+        <img src="img/pesawat-kertas.png" alt="Kirim">
+    </div>
+
+    <script>
+        function toggleBiodata(el) {
+            const bio = el.parentElement.querySelector(".biodata");
+            bio.style.display = bio.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleSelect(card) {
+            card.classList.toggle("selected");
+            toggleSendIcon();
+        }
+
+        function toggleSendIcon() {
+            const selected = document.querySelectorAll(".relawan-card.selected");
+            document.getElementById("sendIcon").style.display = selected.length > 0 ? "block" : "none";
+        }
+
+        function kirimEmail() {
+            const selected = document.querySelectorAll(".relawan-card.selected");
+            let list = [];
+            selected.forEach(card => {
+                const name = card.querySelector(".relawan-name").innerText;
+                const email = card.querySelector(".biodata").innerText.match(/Email:\s*(.*)/)[1];
+                list.push(`To: ${name} <${email}>`);
+            });
+            alert("Simulasi mengirim email ke:\n" + list.join("\n"));
+        }
+    </script>
+</body>
+
+</html>
