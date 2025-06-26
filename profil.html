@@ -2,7 +2,7 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Profil Relawan</title>
     <style>
         body {
@@ -66,6 +66,7 @@
             text-align: center;
             margin: 0 5px;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         .switch-section {
@@ -153,13 +154,16 @@
         }
 
         .btn {
-            padding: 10px 15px;
+            padding: 12px;
             background-color: #1976d2;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            display: inline-block;
+            display: block;
+            width: 100%;
+            text-align: center;
             margin-bottom: 10px;
+            box-sizing: border-box;
         }
 
         .btn.logout {
@@ -169,7 +173,6 @@
 </head>
 
 <body>
-
     <header>
         <h1>Profil Relawan</h1>
     </header>
@@ -184,11 +187,11 @@
         </div>
 
         <div class="stats">
-            <div>
-                <strong>0</strong><br>Aktivitas Diikuti
+            <div onclick="window.location.href='relawan1.html'">
+                <strong>3</strong><br>Aktivitas Diikuti
             </div>
             <div>
-                <strong>0</strong><br>Total Jam Kerja
+                <strong>12</strong><br>Total Jam Kerja
             </div>
         </div>
 
@@ -196,14 +199,14 @@
             <div class="switch-container">
                 <label><strong>Aktifkan Pengantar Rekomendasi</strong></label>
                 <label class="slider-switch">
-                    <input type="checkbox" id="pengantarSwitch">
+                    <input type="checkbox" id="pengantarSwitch" />
                     <span class="slider"></span>
                 </label>
             </div>
 
             <div class="available-time" id="waktuLuang">
                 <label for="waktu">Waktu Luang / Tanggal Tersedia</label>
-                <input type="date" id="waktu">
+                <input type="date" id="waktu" />
             </div>
 
             <div class="confirmation-message" id="konfirmasiText">
@@ -213,7 +216,8 @@
 
         <div class="section">
             <h3>Atur Profil</h3>
-            <a href="aturprofil.html" class="btn">Edit Profil</a><br>
+            <a href="laporan.html" class="btn">Laporan Kegiatan</a>
+            <a href="aturprofil.html" class="btn">Edit Profil</a>
             <a href="login.html" class="btn logout">Logout</a>
         </div>
     </div>
@@ -249,7 +253,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

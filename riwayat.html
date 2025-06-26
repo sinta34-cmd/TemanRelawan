@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Riwayat Laporan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .laporan-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .laporan-item h3 {
+            margin: 0 0 10px 0;
+            color: #d32f2f;
+        }
+
+        .laporan-item p {
+            margin: 5px 0;
+        }
+
+        .foto-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .foto-container img {
+            max-width: 100px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .relawan-list {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Riwayat Laporan Kegiatan</h1>
+    </header>
+
+    <div class="nav-links">
+        <a href="laporan.html">Lapor Kegiatan</a> |
+        <a href="riwayat.html">Riwayat Laporan</a> |
+        <a href="profil.html">Profil</a>
+    </div>
+
+    <div class="container" id="riwayatContainer">
+    </div>
+
+    <script>
+        function tampilkanRiwayat() {
+            const container = document.getElementById('riwayatContainer');
+            container.innerHTML = '';
+
+            const laporanList = JSON.parse(localStorage.getItem('laporanList') || '[]');
+            if (laporanList.length === 0) {
+                container.innerHTML = '<p>Belum ada laporan yang dikirim.</p>';
+                return;
+            }
+
+            laporanList.reverse().forEach(laporan => {
+                const div = document.createElement('div');
+                div.classList.add('laporan-item');
+
+                div.innerHTML = `
+                    <h3>${laporan.kegiatan}</h3>
+                    <p><strong>Tanggal:</strong> ${laporan.tanggal}</p>
+                    <p><strong>Deskripsi:</strong><br>${laporan.deskripsi.replace(/\n/g, '<br>')}</p>
+                    <div class="relawan-list"><strong>Relawan Hadir:</strong> ${laporan.relawanHadir.join(', ')}</div>
+                    ${laporan.fotoDataUrls.length > 0 ? '<div class="foto-container">' + laporan.fotoDataUrls.map(src => `<img src="${src}" alt="Foto Dokumentasi">`).join('') + '</div>' : ''}
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        tampilkanRiwayat();
+    </script>
+</body>
+
+</html>

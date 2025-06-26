@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Kegiatan - Teman Relawan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+        }
+
+        .riwayat-container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .kegiatan-item {
+            background-color: #fff;
+            border-left: 5px solid #007BFF;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .kegiatan-item:hover {
+            background-color: #f0f8ff;
+        }
+
+        .kegiatan-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .kegiatan-tanggal {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Riwayat Kegiatan yang Diikuti</h2>
+
+    <div class="riwayat-container">
+        <div class="kegiatan-item" onclick="window.location.href='detail-riwayat1.html'">
+            <div class="kegiatan-title">Tanam Pohon</div>
+            <div class="kegiatan-tanggal">📅 10 Juni 2025 - Solo</div>
+        </div>
+        <div class="kegiatan-item" onclick="window.location.href='detail-riwayat2.html'">
+            <div class="kegiatan-title">Bakti Sosial Panti Asuhan</div>
+            <div class="kegiatan-tanggal">📅 5 Mei 2025 - Boyolali</div>
+        </div>
+        <div class="kegiatan-item" onclick="window.location.href='detail-riwayat3.html'">
+            <div class="kegiatan-title">Donor Darah Bersama</div>
+            <div class="kegiatan-tanggal">📅 15 April 2025 - Klaten</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
