@@ -2,58 +2,63 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Atur Profil</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 30px;
+            padding: 0;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 28px;
         }
 
         .form-container {
-            max-width: 400px;
-            margin: auto;
+            max-width: 450px;
+            margin: -40px auto 30px;
             background: white;
-            padding: 20px;
+            padding: 30px 20px 20px;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .edit-icon {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 5px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
         .profile-pic {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             background: #ccc;
-            margin: 0 auto 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
+            margin: -60px auto 10px;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #uploadFoto {
+            display: none;
+            margin: 10px auto;
+            text-align: center;
         }
 
         label {
             display: block;
-            margin: 10px 0 5px;
+            margin: 12px 0 6px;
             font-size: 14px;
         }
 
@@ -65,6 +70,7 @@
             border-radius: 6px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+            font-size: 14px;
         }
 
         input:disabled,
@@ -97,7 +103,8 @@
             color: white;
         }
 
-        .btn-simpan {
+        .btn-simpan,
+        .btn-edit {
             width: 100%;
             padding: 10px;
             background-color: #d32f2f;
@@ -114,6 +121,16 @@
             cursor: not-allowed;
         }
 
+        .btn-edit {
+            background-color: #4285f4;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
         #confirmPasswordGroup {
             display: none;
         }
@@ -121,21 +138,24 @@
 </head>
 
 <body>
+    <header>
+        <h2>Atur Profil</h2>
+    </header>
 
     <div class="form-container">
-        <h2>Profil</h2>
-        <div class="edit-icon" onclick="toggleEdit()">✎</div>
-
-        <div class="profile-pic">👤</div>
+        <div class="profile-pic">
+            <img src="img/default-profile.png" alt="Foto Profil" id="profileImg" />
+        </div>
+        <input type="file" accept="image/*" id="uploadFoto" onchange="previewFoto(event)" />
 
         <label for="nama">Nama</label>
-        <input type="text" id="nama" value="Yuki Kimo" disabled>
+        <input type="text" id="nama" value="Yuki Kimo" disabled />
 
         <label for="alamat">Alamat</label>
-        <input type="text" id="alamat" value="Jl. asmoro , No.23 Perum graha ashita" disabled>
+        <input type="text" id="alamat" value="Jl. asmoro , No.23 Perum graha ashita" disabled />
 
         <label for="telepon">No Telepon</label>
-        <input type="text" id="telepon" value="0863785828" disabled>
+        <input type="text" id="telepon" value="0863785828" disabled />
 
         <label>Minat</label>
         <div class="minat-buttons" id="minatGroup">
@@ -151,15 +171,18 @@
         <textarea id="pengalaman"
             disabled>Berpartisipasi dalam beberapa kegiatan sosial di sekolah dan komunitas lingkungan.</textarea>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" value="******" disabled>
+        <label for="password">Password Baru</label>
+        <input type="password" id="password" value="" disabled />
+        <div class="error-message" id="passwordError"></div>
 
         <div id="confirmPasswordGroup">
             <label for="confirmPassword">Konfirmasi Password</label>
-            <input type="password" id="confirmPassword">
+            <input type="password" id="confirmPassword" />
+            <div class="error-message" id="confirmError"></div>
         </div>
 
         <button class="btn-simpan" id="simpanBtn" onclick="simpanProfil()" disabled>Simpan</button>
+        <button class="btn-edit" onclick="toggleEdit()">✎ Edit Profil</button>
     </div>
 
     <script>
@@ -175,9 +198,12 @@
 
             document.getElementById('simpanBtn').disabled = !isEditing;
             document.getElementById('confirmPasswordGroup').style.display = isEditing ? 'block' : 'none';
+            document.getElementById('uploadFoto').style.display = isEditing ? 'block' : 'none';
+            document.getElementById('password').value = '';
             document.getElementById('confirmPassword').value = '';
+            document.getElementById('passwordError').innerText = '';
+            document.getElementById('confirmError').innerText = '';
 
-            // Aktifkan pilihan minat
             document.querySelectorAll('#minatGroup span').forEach(el => {
                 el.style.pointerEvents = isEditing ? 'auto' : 'none';
                 el.style.opacity = isEditing ? '1' : '0.6';
@@ -193,18 +219,29 @@
         });
 
         function simpanProfil() {
-            const confirmPwd = document.getElementById('confirmPassword').value;
-            const currentPwd = "******"; // Simulasi password sekarang
+            const password = document.getElementById('password').value.trim();
+            const confirmPwd = document.getElementById('confirmPassword').value.trim();
+            const passwordError = document.getElementById('passwordError');
+            const confirmError = document.getElementById('confirmError');
+            let valid = true;
 
-            if (!confirmPwd) {
-                alert("⚠️ Harap isi konfirmasi password terlebih dahulu.");
-                return;
+            passwordError.innerText = '';
+            confirmError.innerText = '';
+
+            if (password === '') {
+                passwordError.innerText = "Password harus diisi.";
+                valid = false;
             }
 
-            if (confirmPwd !== currentPwd) {
-                alert("❌ Konfirmasi password tidak sesuai.");
-                return;
+            if (confirmPwd === '') {
+                confirmError.innerText = "Konfirmasi password harus diisi.";
+                valid = false;
+            } else if (password !== confirmPwd) {
+                confirmError.innerText = "Konfirmasi password tidak cocok.";
+                valid = false;
             }
+
+            if (!valid) return;
 
             const nama = document.getElementById('nama').value;
             const alamat = document.getElementById('alamat').value;
@@ -217,8 +254,16 @@
 
             toggleEdit();
         }
-    </script>
 
+        function previewFoto(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const img = document.getElementById("profileImg");
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>
