@@ -25,6 +25,13 @@
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
         .sidebar img {
@@ -56,12 +63,14 @@
         }
 
         .topbar {
-            background-color: #b4d3ff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    background-color: #b4d3ff;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Ini yang penting */
+    align-items: center;
+    text-align: center;       /* Agar teksnya rata tengah juga */
+}
+
 
         .topbar nav a {
             margin: 0 15px;
@@ -103,26 +112,45 @@
             background-color: #29357c;
             color: white;
         }
+
+        /* Tombol Toggle Sidebar */
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .main.full {
+            margin-left: 0;
+        }
     </style>
 </head>
 
 <body>
-    <div class="sidebar">
-        <img src="logo.png" alt="Logo Teman Relawan">
-        <a href="#" class="active">👤<br>USER</a>
-        <a href="#">👥<br>DATA USER</a>
-        <a href="#">📑<br>RIWAYAT KEGIATAN</a>
+    <!-- Tombol Toggle Sidebar -->
+    <button class="toggle-button" onclick="toggleSidebar()" id="toggleButton">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <img src="img/logo.png">
+        <a href="dashboard+useradmin.html" class="active">👤<br>USER</a>
+        <a href="datauseradmin.html">👥<br>DATA USER</a>
+        <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
     </div>
 
-    <div class="main">
+    <!-- Main Content -->
+    <div class="main" id="mainContent">
         <div class="topbar">
             <div class="title">WELCOME ADMIN<br><small>USER</small></div>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Blog</a>
-                <a href="#">Pricing</a>
-            </nav>
+            
         </div>
 
         <div class="content">
@@ -170,6 +198,22 @@
             </table>
         </div>
     </div>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const button = document.getElementById('toggleButton');
+
+            sidebar.classList.toggle('hidden');
+
+            if (sidebar.classList.contains('hidden')) {
+                button.innerText = '☰';
+            } else {
+                button.innerText = '☰';
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login dengan Google</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    .box {
+      background-color: #3d3a3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .google-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .google-header img {
+      width: 40px;
+    }
+    .account-option {
+      background-color: #242728;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .account-option:hover {
+      background-color: #3c91ff;
+    }
+    .account-name {
+      font-size: 0.95rem;
+      color: #e0e0e0;
+    }
+    .account-email {
+      font-size: 0.85rem;
+      color: #b0b0b0;
+    }
+    .icon-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+    .warna-1 { background-color: #f44336; }
+    .warna-2 { background-color: #4caf50; }
+    .warna-3 { background-color: #ff9800; }
+    .warna-4 { background-color: #9c27b0; }
+  </style>
+  <script>
+    function loginDanRedirect(nama) {
+      alert("Login berhasil sebagai " + nama + "!");
+      setTimeout(function () {
+        window.location.href = "useradmin.html";
+      }, 500);
+    }
+  </script>
+</head>
+<body>
+
+<div class="box">
+  <div class="google-header">
+    <img src="img/mail.webp" alt="Google">
+    <h2 class="title is-5 has-text-white">Login dengan Google</h2>
+  </div>
+
+  <p class="mb-4" style="color: #ffffff;">
+    Pilih akun untuk melanjutkan ke <strong class="has-text-link">Teman Relawan</strong>
+  </p>
+
+  <div class="account-option" onclick="loginDanRedirect('molyna')">
+    <div class="icon-img warna-1"><i class="fas fa-user"></i></div>
+    <div>
+      <div class="account-name">molyna</div>
+      <div class="account-email">molydog13@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="account-option" onclick="loginDanRedirect('kim naeyon')">
+    <div class="icon-img warna-2"><i class="fas fa-user"></i></div>
+    <div>
+      <div class="account-name">kim naeyon</div>
+      <div class="account-email">nayeon13@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="account-option" onclick="loginDanRedirect('ayana zefana')">
+    <div class="icon-img warna-3"><i class="fas fa-user"></i></div>
+    <div>
+      <div class="account-name">ayana zefana</div>
+      <div class="account-email">ayana.otkp2@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="account-option" onclick="loginDanRedirect('Preza kebom')">
+    <div class="icon-img warna-4"><i class="fas fa-user"></i></div>
+    <div>
+      <div class="account-name">Preza kebom</div>
+      <div class="account-email">rezakebab93@gmail.com</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
