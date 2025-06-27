@@ -63,14 +63,13 @@
         }
 
         .topbar {
-    background-color: #b4d3ff;
-    padding: 20px;
-    display: flex;
-    justify-content: center; /* Ini yang penting */
-    align-items: center;
-    text-align: center;       /* Agar teksnya rata tengah juga */
-}
-
+            background-color: #b4d3ff;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
         .topbar nav a {
             margin: 0 15px;
@@ -144,13 +143,13 @@
         <a href="dashboard+useradmin.html" class="active">👤<br>USER</a>
         <a href="datauseradmin.html">👥<br>DATA USER</a>
         <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
+        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan menu baru -->
     </div>
 
     <!-- Main Content -->
     <div class="main" id="mainContent">
         <div class="topbar">
             <div class="title">WELCOME ADMIN<br><small>USER</small></div>
-            
         </div>
 
         <div class="content">
@@ -204,14 +203,8 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const button = document.getElementById('toggleButton');
-
             sidebar.classList.toggle('hidden');
-
-            if (sidebar.classList.contains('hidden')) {
-                button.innerText = '☰';
-            } else {
-                button.innerText = '☰';
-            }
+            button.innerText = '☰';
         }
     </script>
 </body>

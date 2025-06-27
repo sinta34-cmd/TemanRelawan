@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e9f1ff;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #357ab8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit Data User</h2>
+        <form id="editForm">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="alamat">Alamat</label>
+            <input type="text" id="alamat" name="alamat" required>
+
+            <label for="pengalaman">Minat/Pengalaman</label>
+            <textarea id="pengalaman" name="pengalaman" rows="2"></textarea>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telp">No. Telpon</label>
+            <input type="text" id="telp" name="telp" required>
+
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating">
+                <option value="1">★☆☆☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="4">★★★★☆</option>
+                <option value="5">★★★★★</option>
+            </select>
+
+            <button type="submit">Simpan Perubahan</button>
+        </form>
+    </div>
+
+    <script>
+        // Simulasi database (harusnya ambil dari server)
+        const users = [
+            { id: 1, nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "Sucipto234@gmail.com", telp: "081556789345", rating: 3 },
+            { id: 2, nama: "Rehan Mahendra", alamat: "Solo", pengalaman: "Dapur Umum Saat Bencana", email: "hendra0908@gmail.com", telp: "085776231557", rating: 3 },
+            { id: 3, nama: "Dwi Utomo", alamat: "Surakarta", pengalaman: "Penggalangan Dana Bencana", email: "dwi4519022@gmail.com", telp: "085342769775", rating: 2 },
+            { id: 4, nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "erikS889032@gmail.com", telp: "081667543980", rating: 4 },
+            { id: 5, nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusP230999@gmail.com", telp: "081778982223", rating: 5 },
+            { id: 6, nama: "Ahamd Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Healt", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 }
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = parseInt(urlParams.get('id'));
+        const user = users.find(u => u.id === userId);
+
+        if (!user) {
+            alert("User tidak ditemukan");
+        } else {
+            document.getElementById('nama').value = user.nama;
+            document.getElementById('alamat').value = user.alamat;
+            document.getElementById('pengalaman').value = user.pengalaman;
+            document.getElementById('email').value = user.email;
+            document.getElementById('telp').value = user.telp;
+            document.getElementById('rating').value = user.rating;
+        }
+
+        document.getElementById('editForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const updatedUser = {
+                id: userId,
+                nama: document.getElementById('nama').value,
+                alamat: document.getElementById('alamat').value,
+                pengalaman: document.getElementById('pengalaman').value,
+                email: document.getElementById('email').value,
+                telp: document.getElementById('telp').value,
+                rating: parseInt(document.getElementById('rating').value)
+            };
+
+            console.log("Data user setelah diedit:", updatedUser);
+
+            // Simulasi kirim ke server / redirect
+            alert("Data berhasil disimpan!");
+            window.location.href = "datauseradmin.html";
+        });
+    </script>
+</body>
+
+</html>

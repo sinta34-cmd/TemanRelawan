@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <title>Riwayat Kegiatan</title>
@@ -38,6 +37,7 @@
             text-decoration: none;
         }
 
+        .sidebar a:hover,
         .sidebar a.active {
             background-color: white;
             font-weight: bold;
@@ -76,6 +76,11 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: #e0efff;
         }
 
         .detail {
@@ -101,10 +106,11 @@
 
 <body>
     <div class="sidebar">
-       <img src="img/logo.png">
+        <img src="img/logo.png">
         <a href="dashboard+useradmin.html">👤<br>USER</a>
         <a href="datauseradmin.html">👥<br>DATA USER</a>
         <a href="riwayatadmin.html" class="active">📑<br>RIWAYAT KEGIATAN</a>
+        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan -->
     </div>
 
     <div class="main">
@@ -113,13 +119,11 @@
         </div>
 
         <div class="content">
-
             <div class="card" onclick="toggleDetail(this)">
                 <h3>Bersih Yuk</h3>
                 <p>27 Juni 2026 - Kali Pepe, Solo</p>
                 <div class="detail">
-                    <p><strong>Deskripsi:</strong> Aksi bersih-bersih sungai bersama komunitas peduli lingkungan dalam
-                        rangka memperingati Hari Lingkungan Hidup.</p>
+                    <p><strong>Deskripsi:</strong> Aksi bersih-bersih sungai bersama komunitas peduli lingkungan dalam rangka memperingati Hari Lingkungan Hidup.</p>
                     <p><strong>Hari:</strong> Sabtu, 27 Juni 2026</p>
                     <p><strong>Relawan yang ikut serta:</strong></p>
                     <ul>
@@ -129,9 +133,7 @@
                         <li>Arif Setyo</li>
                         <li>Lina Putri</li>
                     </ul>
-                    <p><strong>Laporan:</strong> Kegiatan berjalan lancar. Total 50 kg sampah berhasil dikumpulkan dari
-                        sungai dan area sekitar. Antusiasme masyarakat sangat tinggi. Didokumentasikan oleh tim media.
-                    </p>
+                    <p><strong>Laporan:</strong> Kegiatan berjalan lancar. Total 50 kg sampah berhasil dikumpulkan dari sungai dan area sekitar. Antusiasme masyarakat sangat tinggi. Didokumentasikan oleh tim media.</p>
                     <div class="gallery">
                         <img src="img/bersih1.jpg" alt="Foto 1">
                         <img src="img/bersih2.jpg" alt="Foto 2">
@@ -143,8 +145,7 @@
                 <h3>Tanam Pohon Bersama</h3>
                 <p>15 Juli 2026 - Taman Hutan Kota</p>
                 <div class="detail">
-                    <p><strong>Deskripsi:</strong> Penanaman 200 bibit pohon bersama siswa sekolah dan relawan
-                        lingkungan dalam rangka program penghijauan kota.</p>
+                    <p><strong>Deskripsi:</strong> Penanaman 200 bibit pohon bersama siswa sekolah dan relawan lingkungan dalam rangka program penghijauan kota.</p>
                     <p><strong>Hari:</strong> Senin, 15 Juli 2026</p>
                     <p><strong>Relawan yang ikut serta:</strong></p>
                     <ul>
@@ -154,16 +155,13 @@
                         <li>Dino Saputra</li>
                         <li>Alia Kusuma</li>
                     </ul>
-                    <p><strong>Laporan:</strong> Total 200 pohon berhasil ditanam di area hutan kota. Kegiatan ini
-                        melibatkan 3 sekolah dan 25 relawan. Dokumentasi telah disimpan di galeri pusat dan media sosial
-                        resmi Teman Relawan.</p>
+                    <p><strong>Laporan:</strong> Total 200 pohon berhasil ditanam di area hutan kota. Kegiatan ini melibatkan 3 sekolah dan 25 relawan. Dokumentasi telah disimpan di galeri pusat dan media sosial resmi Teman Relawan.</p>
                     <div class="gallery">
                         <img src="img/tanam1.jpg" alt="Foto 1">
                         <img src="img/tanam2.jpg" alt="Foto 2">
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -174,5 +172,4 @@
         }
     </script>
 </body>
-
 </html>

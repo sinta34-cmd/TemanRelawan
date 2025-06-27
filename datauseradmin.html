@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <title>Data User - Admin</title>
     <style>
-        * {
+        html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            height: 100%;
+            background-color: #a7cbff;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
             display: flex;
-            height: 100vh;
-            background-color: #a7cbff;
         }
 
         .sidebar {
@@ -25,6 +23,7 @@
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
+            height: 100vh;
         }
 
         .sidebar img {
@@ -53,13 +52,14 @@
             display: flex;
             flex-direction: column;
             background-color: white;
+            height: 100vh;
         }
 
         .topbar {
             background-color: #b4d3ff;
             padding: 20px;
             display: flex;
-            justify-content: center; /* Center horizontal */
+            justify-content: center;
             align-items: center;
             text-align: center;
         }
@@ -71,17 +71,36 @@
         }
 
         .content {
+            flex: 1;
             padding: 30px;
+            overflow-y: auto;
+        }
+
+        .edit-container {
+            margin-bottom: 10px;
+        }
+
+        .edit-toggle {
+            font-size: 12px;
+            padding: 6px 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .edit-toggle.active {
+            background-color: #dc3545;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        th,
-        td {
+        th, td {
             padding: 12px;
             text-align: left;
         }
@@ -110,15 +129,22 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        tr.editable:hover {
+            background-color: #ffc107 !important;
+            color: black !important;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 </head>
-
 <body>
     <div class="sidebar">
         <img src="img/logo.png">
         <a href="dashboard+useradmin.html">👤<br>USER</a>
         <a href="datauseradmin.html" class="active">👥<br>DATA USER</a>
         <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
+        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan menu profil -->
     </div>
 
     <div class="main">
@@ -127,6 +153,10 @@
         </div>
 
         <div class="content">
+            <div class="edit-container">
+                <button id="editBtn" class="edit-toggle" onclick="toggleEditMode()">🖊️ Edit Mode</button>
+            </div>
+
             <table id="userTable">
                 <thead>
                     <tr>
@@ -148,13 +178,21 @@
 
     <script>
         const users = [
-            { nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "Sucipto234@gmail.com", telp: "081556789345", rating: 3 },
-            { nama: "Rehan Mahendra", alamat: "Solo", pengalaman: "Dapur Umum Saat Bencana", email: "hendra0908@gmail.com", telp: "085776231557", rating: 3 },
-            { nama: "Dwi Utomo", alamat: "Surakarta", pengalaman: "Penggalangan Dana Bencana", email: "dwi4519022@gmail.com", telp: "085342769775", rating: 2 },
-            { nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "erikS889032@gmail.com", telp: "081667543980", rating: 4 },
-            { nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusP230999@gmail.com", telp: "081778982223", rating: 5 },
-            { nama: "Ahamd Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Healt", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 }
+            { id: 1, nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "Sucipto234@gmail.com", telp: "081556789345", rating: 3 },
+            { id: 2, nama: "Rehan Mahendra", alamat: "Solo", pengalaman: "Dapur Umum Saat Bencana", email: "hendra0908@gmail.com", telp: "085776231557", rating: 3 },
+            { id: 3, nama: "Dwi Utomo", alamat: "Surakarta", pengalaman: "Penggalangan Dana Bencana", email: "dwi4519022@gmail.com", telp: "085342769775", rating: 2 },
+            { id: 4, nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "erikS889032@gmail.com", telp: "081667543980", rating: 4 },
+            { id: 5, nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusP230999@gmail.com", telp: "081778982223", rating: 5 },
+            { id: 6, nama: "Ahamd Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Healt", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 }
         ];
+
+        let editMode = false;
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            document.getElementById("editBtn").classList.toggle("active", editMode);
+            renderUsers();
+        }
 
         function renderUsers() {
             const sortedUsers = users.sort((a, b) => b.rating - a.rating);
@@ -163,6 +201,11 @@
 
             sortedUsers.forEach((user, index) => {
                 const row = document.createElement("tr");
+                if (editMode) {
+                    row.classList.add("editable");
+                    row.onclick = () => window.location.href = `edituser.html?id=${user.id}`;
+                }
+
                 row.innerHTML = `
                     <td>${index + 1}</td>
                     <td>${user.nama}</td>
@@ -171,20 +214,24 @@
                     <td>${user.email}</td>
                     <td>${user.telp}</td>
                     <td class="stars">
-                        ${[...Array(5)].map((_, i) => `<span onclick="changeRating(${index}, ${i + 1})">${i < user.rating ? '★' : '☆'}</span>`).join('')}
+                        ${[...Array(5)].map((_, i) =>
+                            `<span onclick="changeRating(event, ${user.id}, ${i + 1})">${i < user.rating ? '★' : '☆'}</span>`).join('')}
                     </td>
                 `;
                 tbody.appendChild(row);
             });
         }
 
-        function changeRating(index, newRating) {
-            users[index].rating = newRating;
-            renderUsers();
+        function changeRating(event, userId, newRating) {
+            event.stopPropagation();
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                user.rating = newRating;
+                renderUsers();
+            }
         }
 
         renderUsers();
     </script>
 </body>
-
 </html>
