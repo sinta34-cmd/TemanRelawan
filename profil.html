@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8" />
     <title>Profil Relawan</title>
@@ -40,8 +39,12 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #0077cc;
+            background-color: #7b1fa2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
         }
 
         .name {
@@ -106,17 +109,17 @@
             height: 20px;
             width: 20px;
             left: 4px;
-            bottom: 3px;
+            bottom:  3px;
             background-color: white;
             border-radius: 50%;
             transition: 0.4s;
         }
 
-        input:checked+.slider {
+        input:checked + .slider {
             background-color: #007bff;
         }
 
-        input:checked+.slider:before {
+        input:checked + .slider:before {
             transform: translateX(22px);
         }
 
@@ -172,8 +175,7 @@
             margin-top: 10px;
         }
 
-        th,
-        td {
+        th, td {
             padding: 10px;
             text-align: left;
         }
@@ -212,15 +214,22 @@
         }
     </style>
 </head>
-
 <body>
     <header>
         <h1>Profil Relawan</h1>
     </header>
 
     <div class="container">
+        <div style="margin-bottom: 20px;">
+            <label for="modeSelect"><strong>Pilih Mode:</strong></label>
+            <select id="modeSelect" onchange="tampilkanBerdasarkanMode()" style="padding: 8px; border-radius: 5px;">
+                <option value="relawan">mencari kegiatan</option>
+                <option value="pencari">mencari Relawan</option>
+            </select>
+        </div>
+
         <div class="profile-header">
-            <img class="avatar" src="img/foto-profil.jpg" alt="Foto Profil" />
+            <div class="avatar">Y</div>
             <div>
                 <div class="name">Yuki Kimo</div>
                 <div>Tergabung sejak 10 jam yang lalu</div>
@@ -255,12 +264,27 @@
             </div>
         </div>
 
-        <div class="section">
-            <h3>Manajemen Organisasi</h3>
+        <div class="section" id="bagianResponRelawan" style="display: none;">
+            <h3>Respon Relawan yang kamu pilih</h3>
+            <button class="btn" onclick="cekResponRelawan()">Lihat Respon Relawan</button>
+            <table id="tabelResponRelawan" style="display:none; margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th>Nama Relawan</th>
+                        <th>Respon</th>
+                        <th>Kegiatan</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyRespon"></tbody>
+            </table>
+        </div>
+
+        <div class="section" id="bagianManajemen" style="display: none;">
+            <h3>Manajemen kegiatan</h3>
             <a href="permintaan-konfirmasi.html" class="btn">Lihat Relawan yang Menunggu Konfirmasi</a>
         </div>
 
-        <div class="section">
+        <div class="section" id="bagianStatusLamaran" style="display: none;">
             <h3>Status Lamaran Kegiatan</h3>
             <table>
                 <thead>
@@ -312,7 +336,6 @@
             if (pengantarSwitch.checked) {
                 waktuLuang.style.display = "block";
                 waktuInput.focus();
-
                 waktuInput.addEventListener("change", () => {
                     if (waktuInput.value) {
                         const yakin = confirm("Anda yakin ingin diikutsertakan dalam rekomendasi?");
@@ -332,7 +355,40 @@
                 waktuInput.value = "";
             }
         });
+
+        const dataResponRelawan = [
+            { nama: "Andi Saputra", respon: "MENERIMA", kegiatan: "Bakti Sosial Pengobatan Gratis" },
+            { nama: "Lina Marlina", respon: "MENOLAK", kegiatan: "Donor Darah PMI" },
+            { nama: "Riko Ahmad", respon: "MENERIMA", kegiatan: "Bersih Sungai" }
+        ];
+
+        function cekResponRelawan() {
+            const table = document.getElementById("tabelResponRelawan");
+            const tbody = document.getElementById("tbodyRespon");
+            tbody.innerHTML = "";
+            table.style.display = "table";
+
+            dataResponRelawan.forEach(item => {
+                const warna = item.respon === "MENERIMA" ? "green" : "red";
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item.nama}</td>
+                    <td style="color: ${warna}; font-weight: bold;">${item.respon}</td>
+                    <td>${item.kegiatan}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function tampilkanBerdasarkanMode() {
+            const mode = document.getElementById("modeSelect").value;
+
+            document.getElementById("bagianResponRelawan").style.display = (mode === "pencari") ? "block" : "none";
+            document.getElementById("bagianManajemen").style.display = (mode === "pencari") ? "block" : "none";
+            document.getElementById("bagianStatusLamaran").style.display = (mode === "relawan") ? "block" : "none";
+        }
+
+        window.onload = tampilkanBerdasarkanMode;
     </script>
 </body>
-
-</html>
+</html>  
