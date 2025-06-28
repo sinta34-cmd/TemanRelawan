@@ -113,57 +113,57 @@
 
 <body>
 
-<header>
-    <h1>Cari Aktivitas Relawan</h1>
-    <p>Temukan kegiatan sosial yang sesuai minat dan pengalamanmu</p>
-</header>
+    <header>
+        <h1>Cari Aktivitas Relawan</h1>
+        <p>Temukan kegiatan sosial yang sesuai minat dan pengalamanmu</p>
+    </header>
 
-<div class="search-section">
-    <input type="text" id="searchInput" placeholder="🔍 Cari berdasarkan judul, lokasi, atau deskripsi...">
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="🔍 Cari berdasarkan judul, lokasi, atau deskripsi...">
 
-    <div class="filters">
-        <select id="filterJenis">
-            <option value="">🔖 Jenis Kegiatan</option>
-            <option>Lingkungan</option>
-            <option>Pendidikan</option>
-            <option>Sosial</option>
-            <option>Kesehatan</option>
-        </select>
+        <div class="filters">
+            <select id="filterJenis">
+                <option value="">🔖 Jenis Kegiatan</option>
+                <option>Lingkungan</option>
+                <option>Pendidikan</option>
+                <option>Sosial</option>
+                <option>Kesehatan</option>
+            </select>
 
-        <select id="filterPengalaman">
-            <option value="">🨭 Pengalaman Relawan</option>
-            <option>Pemula</option>
-            <option>Menengah</option>
-            <option>Berpengalaman</option>
-        </select>
+            <select id="filterPengalaman">
+                <option value="">🨭 Pengalaman Relawan</option>
+                <option>Pemula</option>
+                <option>Menengah</option>
+                <option>Berpengalaman</option>
+            </select>
+        </div>
     </div>
-</div>
 
-<h2>Rekomendasi Aktivitas</h2>
-<div class="activity-list"></div>
+    <h2>Rekomendasi Aktivitas</h2>
+    <div class="activity-list"></div>
 
-<script>
-    const activities = [
-        { title: "Tanam Pohon", date: "10 Juli 2026", location: "Yogyakarta", jenis: "Lingkungan", pengalaman: "Pemula", img: "img/pohon.jpeg", link: "detail-tanampohon.html" },
-        { title: "Bersih Yuk", date: "27 Juni 2026", location: "Solo", jenis: "Lingkungan", pengalaman: "Menengah", img: "img/bersih.jpeg", link: "detail-bersih.html" },
-        { title: "Gowes Sehat", date: "5 Agustus 2026", location: "Semarang", jenis: "Kesehatan", pengalaman: "Menengah", img: "img/goes.jpg", link: "detail-gowes.html" },
-        { title: "Kelas Belajar Anak", date: "30 April 2026", location: "Tangerang", jenis: "Pendidikan", pengalaman: "Pemula", img: "img/mengajar.jpeg", link: "detail-kelasbelajar.html" },
-        { title: "Donor Darah Gratis", date: "01 Juli 2026", location: "Semarang", jenis: "Kesehatan", pengalaman: "Berpengalaman", img: "img/donor darah.jpg", link: "detail-donor darah.html" },
-        { title: "Pelatihan UMKM", date: "15 Juli 2026", location: "Bandung", jenis: "Sosial", pengalaman: "Menengah", img: "img/umkm.jpg", link: "detail-umkm.html" },
-        { title: "Bantu Lansia", date: "9 Mei 2026", location: "Depok", jenis: "Sosial", pengalaman: "Berpengalaman", img: "img/lansia.jpg", link: "detail-lansia.html" },
-        { title: "Bimbingan Belajar", date: "20 Juli 2026", location: "Bekasi", jenis: "Pendidikan", pengalaman: "Pemula", img: "img/bimbel.jpg", link: "detail-bimbel.html" },
-        { title: "Cek Kesehatan Gratis", date: "12 Juni 2026", location: "Bogor", jenis: "Kesehatan", pengalaman: "Menengah", img: "img/cek-kesehatan.jpg", link: "detail-cek.html" },
-        { title: "Edukasi Sampah", date: "5 Juli 2026", location: "Surabaya", jenis: "Lingkungan", pengalaman: "Pemula", img: "img/sampah.jpg", link: "detail-sampah.html" },
-    ];
+    <script>
+        const activities = [
+            { title: "Tanam Pohon", date: "10 Juli 2026", location: "Yogyakarta", jenis: "Lingkungan", pengalaman: "Pemula", img: "img/pohon.jpeg", link: "detail-tanampohon.html" },
+            { title: "Bersih Yuk", date: "27 Juni 2026", location: "Solo", jenis: "Lingkungan", pengalaman: "Menengah", img: "img/bersih.jpeg", link: "detail-bersih.html" },
+            { title: "Gowes Sehat", date: "5 Agustus 2026", location: "Semarang", jenis: "Kesehatan", pengalaman: "Menengah", img: "img/goes.jpg", link: "detail-gowes.html" },
+            { title: "Kelas Belajar Anak", date: "30 April 2026", location: "Tangerang", jenis: "Pendidikan", pengalaman: "Pemula", img: "img/mengajar.jpeg", link: "detail-kelasbelajar.html" },
+            { title: "Donor Darah Gratis", date: "01 Juli 2026", location: "Semarang", jenis: "Kesehatan", pengalaman: "Berpengalaman", img: "img/donor darah.jpg", link: "detail-donordarah.html" },
+            { title: "Pelatihan UMKM", date: "15 Juli 2026", location: "Bandung", jenis: "Sosial", pengalaman: "Menengah", img: "img/umkm.jpg", link: "detail-pelatihanumkm.html" },
+            { title: "Bantu Lansia", date: "9 Mei 2026", location: "Depok", jenis: "Sosial", pengalaman: "Berpengalaman", img: "img/lansia.jpg", link: "detail-bantulansia.html" },
+            { title: "Bimbingan Belajar", date: "20 Juli 2026", location: "Bekasi", jenis: "Pendidikan", pengalaman: "Pemula", img: "img/bimbel.jpg", link: "detail-bimbinganbelajar.html" },
+            { title: "Cek Kesehatan Gratis", date: "12 Juni 2026", location: "Bogor", jenis: "Kesehatan", pengalaman: "Menengah", img: "img/cek-kesehatan.jpg", link: "detail-cekkesehatan.html" },
+            { title: "Edukasi Sampah", date: "5 Juli 2026", location: "Surabaya", jenis: "Lingkungan", pengalaman: "Pemula", img: "img/sampah.jpg", link: "detail-edukasisampah.html" },
+        ];
 
-    const list = document.querySelector('.activity-list');
-    activities.forEach(act => {
-        const card = document.createElement('div');
-        card.className = 'activity-card';
-        card.setAttribute('onclick', `location.href='${act.link}'`);
-        card.setAttribute('data-jenis', act.jenis);
-        card.setAttribute('data-pengalaman', act.pengalaman);
-        card.innerHTML = `
+        const list = document.querySelector('.activity-list');
+        activities.forEach(act => {
+            const card = document.createElement('div');
+            card.className = 'activity-card';
+            card.setAttribute('onclick', `location.href='${act.link}'`);
+            card.setAttribute('data-jenis', act.jenis);
+            card.setAttribute('data-pengalaman', act.pengalaman);
+            card.innerHTML = `
             <img src="${act.img}" alt="${act.title}">
             <div class="activity-info">
                 <h3>${act.title}</h3>
@@ -171,44 +171,44 @@
                 <p>📍 ${act.location}</p>
             </div>
         `;
-        list.appendChild(card);
-    });
+            list.appendChild(card);
+        });
 
-    document.getElementById("searchInput").addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            filterActivities();
-        }
-    });
-
-    document.getElementById("filterJenis").addEventListener("change", filterActivities);
-    document.getElementById("filterPengalaman").addEventListener("change", filterActivities);
-
-    function filterActivities() {
-        const keyword = document.getElementById("searchInput").value.toLowerCase();
-        const selectedJenis = document.getElementById("filterJenis").value;
-        const selectedPengalaman = document.getElementById("filterPengalaman").value;
-
-        const cards = document.querySelectorAll(".activity-card");
-
-        cards.forEach(card => {
-            const title = card.querySelector("h3").textContent.toLowerCase();
-            const location = card.querySelector("p:nth-child(3)").textContent.toLowerCase();
-            const jenis = card.dataset.jenis;
-            const pengalaman = card.dataset.pengalaman;
-
-            const matchKeyword = title.includes(keyword) || location.includes(keyword);
-            const matchJenis = !selectedJenis || jenis === selectedJenis;
-            const matchPengalaman = !selectedPengalaman || pengalaman === selectedPengalaman;
-
-            if (matchKeyword && matchJenis && matchPengalaman) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
+        document.getElementById("searchInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                filterActivities();
             }
         });
-    }
-</script>
+
+        document.getElementById("filterJenis").addEventListener("change", filterActivities);
+        document.getElementById("filterPengalaman").addEventListener("change", filterActivities);
+
+        function filterActivities() {
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
+            const selectedJenis = document.getElementById("filterJenis").value;
+            const selectedPengalaman = document.getElementById("filterPengalaman").value;
+
+            const cards = document.querySelectorAll(".activity-card");
+
+            cards.forEach(card => {
+                const title = card.querySelector("h3").textContent.toLowerCase();
+                const location = card.querySelector("p:nth-child(3)").textContent.toLowerCase();
+                const jenis = card.dataset.jenis;
+                const pengalaman = card.dataset.pengalaman;
+
+                const matchKeyword = title.includes(keyword) || location.includes(keyword);
+                const matchJenis = !selectedJenis || jenis === selectedJenis;
+                const matchPengalaman = !selectedPengalaman || pengalaman === selectedPengalaman;
+
+                if (matchKeyword && matchJenis && matchPengalaman) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
 
 </body>
 
