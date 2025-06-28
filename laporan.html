@@ -2,253 +2,219 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Laporan Kegiatan</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #eef7ff;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <title>Laporan Kegiatan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef7ff;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-        header {
-            background: url('img/relawan.png') no-repeat center center;
-            background-size: cover;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    header {
+      background: url('img/relawan.png') no-repeat center center;
+      background-size: cover;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        h1 {
-            margin: 0;
-        }
+    h1 {
+      margin: 0;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
 
-        select,
-        textarea,
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            resize: vertical;
-        }
+    select,
+    textarea,
+    input[type="file"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
 
-        textarea {
-            min-height: 100px;
-        }
+    textarea {
+      min-height: 100px;
+    }
 
-        .relawan-list {
-            margin-top: 10px;
-            max-height: 150px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-        }
+    button {
+      margin-top: 20px;
+      background-color: #1976d2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-        .relawan-list label {
-            font-weight: normal;
-            display: block;
-            margin-bottom: 5px;
-        }
+    button:hover {
+      background-color: #145a9e;
+    }
 
-        button {
-            margin-top: 20px;
-            background-color: #1976d2;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .message {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
 
-        button:hover {
-            background-color: #145a9e;
-        }
+    .nav-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        .message {
-            margin-top: 20px;
-            color: green;
-            font-weight: bold;
-        }
+    .nav-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #1976d2;
+      font-weight: bold;
+    }
 
-        .nav-links {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .nav-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #1976d2;
-            font-weight: bold;
-        }
-
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Laporan Kegiatan Sosial</h1>
-    </header>
+  <header>
+    <h1>Laporan Kegiatan Sosial</h1>
+  </header>
 
-    <div class="nav-links">
-        <a href="riwayat.html">Riwayat Laporan</a> |
-        <a href="profil.html">Profil</a>
-    </div>
+  <div class="nav-links">
+    <a href="riwayat.html">Riwayat Laporan</a> |
+    <a href="profil.html">Profil</a>
+  </div>
 
-    <div class="container">
-        <form id="laporanForm">
-            <label for="kegiatan">Pilih Kegiatan</label>
-            <select id="kegiatan" required>
-                <option value="">-- Pilih Kegiatan --</option>
-                <option value="Bersih Pantai">Bersih Pantai</option>
-                <option value="Bakti Sosial Panti Asuhan">Bakti Sosial Panti Asuhan</option>
-                <option value="Donor Darah">Donor Darah</option>
-                <option value="Penanaman Pohon">Penanaman Pohon</option>
-            </select>
+  <div class="container">
+    <form id="laporanForm">
+      <label for="kegiatan">Pilih Kegiatan</label>
+      <select id="kegiatan" required>
+        <option value="">-- Pilih Kegiatan --</option>
+        <option value="Bersih Pantai">Bersih Pantai</option>
+        <option value="Bakti Sosial Panti Asuhan">Bakti Sosial Panti Asuhan</option>
+        <option value="Donor Darah">Donor Darah</option>
+        <option value="Penanaman Pohon">Penanaman Pohon</option>
+      </select>
 
-            <label for="deskripsi">Deskripsi Jalannya Kegiatan</label>
-            <textarea id="deskripsi" placeholder="Tulis laporan singkat..." required></textarea>
+      <label for="deskripsi">Deskripsi Jalannya Kegiatan</label>
+      <textarea id="deskripsi" placeholder="Tulis laporan singkat..." required></textarea>
 
-            <label for="foto">Upload Foto Dokumentasi</label>
-            <input type="file" id="foto" accept="image/*" multiple />
+      <label for="foto">Upload Foto Dokumentasi</label>
+      <input type="file" id="foto" accept="image/*" multiple />
 
-            <label>Relawan yang Hadir</label>
-            <div class="relawan-list" id="relawanList">
-            </div>
+      <label for="relawanInput">Relawan yang Hadir</label>
+      <input type="text" id="relawanInput" placeholder="Contoh: Andi, Budi, Citra" required />
 
-            <button type="submit">Kirim Laporan</button>
-        </form>
+      <button type="submit">Kirim Laporan</button>
+    </form>
 
-        <div class="message" id="message"></div>
-    </div>
+    <div class="message" id="message"></div>
+  </div>
 
-    <script>
-        const relawanData = [
-            { id: 1, nama: "Andi" },
-            { id: 2, nama: "Budi" },
-            { id: 3, nama: "Citra" },
-            { id: 4, nama: "Dewi" },
-            { id: 5, nama: "Eko" }
-        ];
+  <script>
+    document.getElementById('laporanForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-        const relawanListContainer = document.getElementById('relawanList');
+      const kegiatan = document.getElementById('kegiatan').value;
+      const deskripsi = document.getElementById('deskripsi').value.trim();
+      const relawanInput = document.getElementById('relawanInput').value.trim();
+      const fotoInput = document.getElementById('foto');
+      const files = fotoInput.files;
+      const fotoDataUrls = [];
 
-        function renderRelawan() {
-            relawanListContainer.innerHTML = '';
-            relawanData.forEach(r => {
-                const label = document.createElement('label');
-                label.innerHTML = `<input type="checkbox" name="relawanHadiri" value="${r.id}"> ${r.nama}`;
-                relawanListContainer.appendChild(label);
-            });
+      if (!kegiatan) {
+        alert('Silakan pilih kegiatan.');
+        return;
+      }
+
+      if (!deskripsi) {
+        alert('Silakan isi deskripsi kegiatan.');
+        return;
+      }
+
+      if (!relawanInput) {
+        alert('Silakan masukkan nama relawan yang hadir.');
+        return;
+      }
+
+      const relawanHadir = relawanInput.split(',').map(n => n.trim()).filter(n => n);
+
+      if (relawanHadir.length === 0) {
+        alert('Masukkan setidaknya satu nama relawan.');
+        return;
+      }
+
+      if (files.length === 0) {
+        if (!confirm('Anda tidak mengunggah foto. Lanjutkan?')) {
+          return;
+        }
+      }
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      async function prosesSimpan() {
+        for (let i = 0; i < files.length; i++) {
+          try {
+            const dataUrl = await readFileAsDataURL(files[i]);
+            fotoDataUrls.push(dataUrl);
+          } catch (err) {
+            console.error('Gagal baca file:', err);
+          }
         }
 
-        renderRelawan();
+        const laporan = {
+          id: Date.now(),
+          kegiatan,
+          deskripsi,
+          fotoDataUrls,
+          relawanHadir,
+          tanggal: new Date().toLocaleString()
+        };
 
-        document.getElementById('laporanForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        let laporanList = JSON.parse(localStorage.getItem('laporanList') || '[]');
+        laporanList.push(laporan);
+        localStorage.setItem('laporanList', JSON.stringify(laporanList));
 
-            const kegiatan = document.getElementById('kegiatan').value;
-            const deskripsi = document.getElementById('deskripsi').value.trim();
-            const fotoInput = document.getElementById('foto');
-            const relawanChecked = Array.from(document.querySelectorAll('input[name="relawanHadiri"]:checked'))
-                .map(cb => cb.value);
+        document.getElementById('laporanForm').reset();
+        document.getElementById('message').textContent = 'Laporan berhasil dikirim!';
 
-            if (!kegiatan) {
-                alert('Silakan pilih kegiatan.');
-                return;
-            }
+        setTimeout(() => {
+          document.getElementById('message').textContent = '';
+        }, 5000);
+      }
 
-            if (!deskripsi) {
-                alert('Silakan isi deskripsi kegiatan.');
-                return;
-            }
-
-            if (relawanChecked.length === 0) {
-                alert('Silakan centang relawan yang hadir.');
-                return;
-            }
-
-            const files = fotoInput.files;
-            const fotoDataUrls = [];
-
-            if (files.length === 0) {
-                if (!confirm('Anda tidak mengunggah foto. Lanjutkan?')) {
-                    return;
-                }
-            }
-
-            function readFileAsDataURL(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
-                });
-            }
-
-            async function prosesSimpan() {
-                for (let i = 0; i < files.length; i++) {
-                    try {
-                        const dataUrl = await readFileAsDataURL(files[i]);
-                        fotoDataUrls.push(dataUrl);
-                    } catch (err) {
-                        console.error('Gagal baca file:', err);
-                    }
-                }
-
-                const laporan = {
-                    id: Date.now(),
-                    kegiatan,
-                    deskripsi,
-                    fotoDataUrls,
-                    relawanHadir: relawanChecked.map(id => {
-                        const r = relawanData.find(x => x.id == id);
-                        return r ? r.nama : id;
-                    }),
-                    tanggal: new Date().toLocaleString()
-                };
-
-                let laporanList = JSON.parse(localStorage.getItem('laporanList') || '[]');
-                laporanList.push(laporan);
-                localStorage.setItem('laporanList', JSON.stringify(laporanList));
-
-                this.reset();
-                document.getElementById('message').textContent = 'Laporan berhasil dikirim!';
-
-                setTimeout(() => {
-                    document.getElementById('message').textContent = '';
-                }, 5000);
-            }
-
-            prosesSimpan();
-        });
-    </script>
+      prosesSimpan();
+    });
+  </script>
 
 </body>
 

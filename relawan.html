@@ -87,13 +87,16 @@
         }
 
         .relawan-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin: 30px auto;
-            max-width: 700px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 👉 2 kolom tetap */
+            gap: 24px;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
+
 
         .relawan-card {
             background-color: #d6ecff;
@@ -102,10 +105,11 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
             gap: 20px;
-            position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
+
 
         .relawan-foto {
             width: 90px;
@@ -166,58 +170,344 @@
         <img src="img/logo.png" class="logo" alt="Logo">
         <h1>Teman Relawan</h1>
         <p>Daftar Anggota Relawan</p>
-        <div class="header-icons">
-            <img src="img/267665adb49f882d4f05070a862bae8d-removebg-preview.png" alt="ikon1">
-            <img src="img/ed53ab083b682d35128046946c0ba173-removebg-preview.png" alt="ikon2">
-            <img src="img/images__1_-removebg-preview (2).png" alt="ikon3">
-        </div>
-        <div class="ground-line"></div>
+      
+       
     </header>
 
-    <h2>Relawan Terdaftar</h2>
+    <h2>Relawan ngangur</h2>
 
     <div class="relawan-container">
 
-        <div class="relawan-card">
-            <img src="img/foto1.jpg" alt="Rina Wijaya" class="relawan-foto">
-            <div class="relawan-info">
-                <div class="info-header">
-                    <strong>Rina Wijaya</strong>
-                    <button class="toggle-detail" title="Lihat Biodata">👁️</button>
-                </div>
-                <div class="relawan-detail">
-                    <p><strong>Alamat:</strong> Jakarta Selatan</p>
-                    <p><strong>Telepon:</strong> 0812-3456-7890</p>
-                    <p><strong>Minat:</strong></p>
-                    <div class="tag-container">
-                        <span class="tag">Pendidikan</span>
-                        <span class="tag">Lingkungan</span>
-                    </div>
-                    <p><strong>Pengalaman:</strong> 3 tahun kegiatan sosial</p>
-                </div>
-            </div>
+        <!-- 1 -->
+<div class="relawan-card">
+    <img src="img/nigga.avif" alt="Rina Wijaya" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Rina Wijaya</strong>
+            <button class="toggle-detail">👁️</button>
         </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Jakarta Selatan</p>
+            <p><strong>Telepon:</strong> 0812-3456-7890</p>
+            <p><strong>Email:</strong> rina.wijaya@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Pendidikan</span>
+                <span class="tag">Lingkungan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 3 tahun kegiatan sosial</p>
+        </div>
+    </div>
+</div>
 
-        <div class="relawan-card">
-            <img src="img/foto2.jpg" alt="Budi Santoso" class="relawan-foto">
-            <div class="relawan-info">
-                <div class="info-header">
-                    <strong>Budi Santoso</strong>
-                    <button class="toggle-detail" title="Lihat Biodata">👁️</button>
-                </div>
-                <div class="relawan-detail">
-                    <p><strong>Alamat:</strong> Bandung</p>
-                    <p><strong>Telepon:</strong> 0821-5555-6666</p>
-                    <p><strong>Minat:</strong></p>
-                    <div class="tag-container">
-                        <span class="tag">Lingkungan</span>
-                        <span class="tag">Kesehatan</span>
-                        <span class="tag">Bencana Alam</span>
-                    </div>
-                    <p><strong>Pengalaman:</strong> 5 tahun relawan bencana</p>
-                </div>
-            </div>
+<!-- 2 -->
+<div class="relawan-card">
+    <img src="img/foto2.jpg" alt="Budi Santoso" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Budi Santoso</strong>
+            <button class="toggle-detail">👁️</button>
         </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Bandung</p>
+            <p><strong>Telepon:</strong> 0821-5555-6666</p>
+            <p><strong>Email:</strong> budi.santoso@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Lingkungan</span>
+                <span class="tag">Kesehatan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 5 tahun relawan bencana</p>
+        </div>
+    </div>
+</div>
+
+
+       <!-- Daftar Relawan Lengkap (3 - 15) -->
+<!-- 3 -->
+<div class="relawan-card">
+    <img src="img/foto3.jpg" alt="Siti Nurhaliza" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Siti Nurhaliza</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Surabaya</p>
+            <p><strong>Telepon:</strong> 0813-2233-4455</p>
+            <p><strong>Email:</strong> siti.nurhaliza@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Pendidikan</span>
+                <span class="tag">Kesehatan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 2 tahun mengajar anak-anak</p>
+        </div>
+    </div>
+</div>
+
+<!-- 4 -->
+<div class="relawan-card">
+    <img src="img/foto4.jpg" alt="Andi Saputra" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Andi Saputra</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Semarang</p>
+            <p><strong>Telepon:</strong> 0852-2222-3333</p>
+            <p><strong>Email:</strong> andi.saputra@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Kesehatan</span>
+                <span class="tag">Lingkungan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 1 tahun relawan puskesmas</p>
+        </div>
+    </div>
+</div>
+
+<!-- 5 -->
+<div class="relawan-card">
+    <img src="img/foto5.jpg" alt="Dewi Kartika" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Dewi Kartika</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Yogyakarta</p>
+            <p><strong>Telepon:</strong> 0819-8765-4321</p>
+            <p><strong>Email:</strong> dewi.kartika@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Pendidikan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 4 tahun pendamping literasi</p>
+        </div>
+    </div>
+</div>
+
+<!-- 6 -->
+<div class="relawan-card">
+    <img src="img/foto6.jpg" alt="Riko Gunawan" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Riko Gunawan</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Bekasi</p>
+            <p><strong>Telepon:</strong> 0877-1111-2222</p>
+            <p><strong>Email:</strong> riko.gunawan@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Lingkungan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 6 bulan kegiatan bersih sungai</p>
+        </div>
+    </div>
+</div>
+
+<!-- 7 -->
+<div class="relawan-card">
+    <img src="img/foto7.jpg" alt="Intan Permata" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Intan Permata</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Tangerang</p>
+            <p><strong>Telepon:</strong> 0813-9988-1122</p>
+            <p><strong>Email:</strong> intan.permata@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Kesehatan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 3 tahun edukasi posyandu</p>
+        </div>
+    </div>
+</div>
+
+<!-- 8 -->
+<div class="relawan-card">
+    <img src="img/foto8.jpg" alt="Agus Haryanto" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Agus Haryanto</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Depok</p>
+            <p><strong>Telepon:</strong> 0851-4444-1234</p>
+            <p><strong>Email:</strong> agus.haryanto@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Bencana Alam</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 2 tahun evakuasi banjir</p>
+        </div>
+    </div>
+</div>
+
+<!-- 9 -->
+<div class="relawan-card">
+    <img src="img/foto9.jpg" alt="Lina Marlina" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Lina Marlina</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Bogor</p>
+            <p><strong>Telepon:</strong> 0822-3333-1122</p>
+            <p><strong>Email:</strong> lina.marlina@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Pendidikan</span>
+                <span class="tag">Lingkungan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Relawan perpustakaan desa</p>
+        </div>
+    </div>
+</div>
+
+<!-- 10 -->
+<div class="relawan-card">
+    <img src="img/foto10.jpg" alt="Hendra Wijaya" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Hendra Wijaya</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Malang</p>
+            <p><strong>Telepon:</strong> 0882-7777-5544</p>
+            <p><strong>Email:</strong> hendra.wijaya@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Kesehatan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Pendamping lansia</p>
+        </div>
+    </div>
+</div>
+
+<!-- 11 -->
+<div class="relawan-card">
+    <img src="img/foto11.jpg" alt="Dedi Ramdani" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Dedi Ramdani</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Cirebon</p>
+            <p><strong>Telepon:</strong> 0812-1212-3434</p>
+            <p><strong>Email:</strong> dedi.ramdani@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Bencana Alam</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Tim SAR lokal selama 3 tahun</p>
+        </div>
+    </div>
+</div>
+
+<!-- 12 -->
+<div class="relawan-card">
+    <img src="img/foto12.jpg" alt="Ayu Lestari" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Ayu Lestari</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Sleman</p>
+            <p><strong>Telepon:</strong> 0896-5432-1234</p>
+            <p><strong>Email:</strong> ayu.lestari@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Lingkungan</span>
+                <span class="tag">Pendidikan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Relawan taman baca keliling</p>
+        </div>
+    </div>
+</div>
+
+<!-- 13 -->
+<div class="relawan-card">
+    <img src="img/foto13.jpg" alt="Farhan Ahmad" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Farhan Ahmad</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Pontianak</p>
+            <p><strong>Telepon:</strong> 0856-7654-3210</p>
+            <p><strong>Email:</strong> farhan.ahmad@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Kesehatan</span>
+                <span class="tag">Bencana Alam</span>
+            </div>
+            <p><strong>Pengalaman:</strong> 2 tahun pendampingan evakuasi</p>
+        </div>
+    </div>
+</div>
+
+<!-- 14 -->
+<div class="relawan-card">
+    <img src="img/foto14.jpg" alt="Nia Anggraini" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Nia Anggraini</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Padang</p>
+            <p><strong>Telepon:</strong> 0823-2345-6789</p>
+            <p><strong>Email:</strong> nia.anggraini@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Pendidikan</span>
+                <span class="tag">Kesehatan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Tutor anak-anak desa terpencil</p>
+        </div>
+    </div>
+</div>
+
+<!-- 15 -->
+<div class="relawan-card">
+    <img src="img/foto15.jpg" alt="Tommy Prasetyo" class="relawan-foto">
+    <div class="relawan-info">
+        <div class="info-header">
+            <strong>Tommy Prasetyo</strong>
+            <button class="toggle-detail">👁️</button>
+        </div>
+        <div class="relawan-detail">
+            <p><strong>Alamat:</strong> Balikpapan</p>
+            <p><strong>Telepon:</strong> 0812-8888-9999</p>
+            <p><strong>Email:</strong> tommy.prasetyo@email.com</p>
+            <p><strong>Minat:</strong></p>
+            <div class="tag-container">
+                <span class="tag">Lingkungan</span>
+            </div>
+            <p><strong>Pengalaman:</strong> Koordinator reboisasi kota</p>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+    </div>
+
 
     </div>
 

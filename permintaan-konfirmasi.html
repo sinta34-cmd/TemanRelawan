@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Konfirmasi Relawan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef7ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: url('img/relawan.png') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    header * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .relawan-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f0f9ff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .relawan-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007BFF;
+    }
+
+    .relawan-info {
+      flex: 1;
+    }
+
+    .relawan-info strong {
+      font-size: 18px;
+      color: #007BFF;
+    }
+
+    .relawan-info p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .relawan-actions button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .btn-terima {
+      background-color: #28a745;
+    }
+
+    .btn-tolak {
+      background-color: #dc3545;
+    }
+
+    .notif {
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .notif.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .notif.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Daftar Konfirmasi Relawan</h1>
+  <p>Kelola relawan yang menunggu konfirmasi Anda</p>
+</header>
+
+<div class="container" id="relawanList">
+
+  <!-- Contoh Data Relawan -->
+  <div class="relawan-card">
+    <img src="img/foto1.jpg" alt="Rina Wijaya">
+    <div class="relawan-info">
+      <strong>Rina Wijaya</strong>
+      <p>Email: rina@example.com</p>
+      <p>WA: 0812-3456-7890</p>
+      <p>Minat: Pendidikan, Lingkungan</p>
+      <p>Pengalaman: 3 tahun</p>
+    </div>
+    <div class="relawan-actions">
+      <button class="btn-terima" onclick="handleConfirmation(this, 'terima')">Terima</button>
+      <button class="btn-tolak" onclick="handleConfirmation(this, 'tolak')">Tolak</button>
+    </div>
+  </div>
+
+  <div class="relawan-card">
+    <img src="img/foto2.jpg" alt="Budi Santoso">
+    <div class="relawan-info">
+      <strong>Budi Santoso</strong>
+      <p>Email: budi@example.com</p>
+      <p>WA: 0821-5555-6666</p>
+      <p>Minat: Kesehatan, Sosial</p>
+      <p>Pengalaman: 5 tahun</p>
+    </div>
+    <div class="relawan-actions">
+      <button class="btn-terima" onclick="handleConfirmation(this, 'terima')">Terima</button>
+      <button class="btn-tolak" onclick="handleConfirmation(this, 'tolak')">Tolak</button>
+    </div>
+  </div>
+
+  <!-- Tambahkan data lain di sini -->
+
+</div>
+
+<script>
+  function handleConfirmation(button, action) {
+    const card = button.closest('.relawan-card');
+    const name = card.querySelector('strong').textContent;
+    let message = '';
+
+    if (action === 'terima') {
+      message = `✅ ${name} telah dikonfirmasi sebagai relawan.`;
+      showNotif(message, 'success');
+    } else {
+      message = `❌ ${name} telah ditolak dari daftar relawan.`;
+      showNotif(message, 'error');
+    }
+
+    card.style.display = 'none';
+  }
+
+  function showNotif(message, type) {
+    const notif = document.createElement('div');
+    notif.className = `notif ${type}`;
+    notif.textContent = message;
+    document.body.insertBefore(notif, document.getElementById("relawanList"));
+
+    setTimeout(() => notif.remove(), 3000);
+  }
+</script>
+
+</body>
+</html>

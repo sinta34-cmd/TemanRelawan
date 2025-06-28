@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Rekomendasi Relawan</title>
+    <title>Rekomendasi Relawan - Teman Relawan</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #eef7ff;
             margin: 0;
+            padding: 0;
         }
 
         header {
@@ -37,82 +38,92 @@
         }
 
         .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
+            max-width: 1000px;
+            margin: 30px auto;
             padding: 20px;
+            background: white;
             border-radius: 10px;
         }
 
         .relawan-card {
-            background-color: #d6ecff;
-            border-radius: 15px;
-            padding: 15px 20px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            gap: 20px;
+            background-color: #d6ecff;
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .relawan-card.selected {
-            border: 2px solid #007BFF;
-            background-color: #b4dbff;
+        .relawan-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
         }
 
         .relawan-info {
-            display: flex;
-            align-items: center;
+            flex: 1;
         }
 
-        .relawan-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            margin-right: 20px;
-            text-align: center;
+        .relawan-info h3 {
+            margin: 0 0 5px;
+            color: #007BFF;
         }
 
-        .relawan-name {
-            font-weight: bold;
-            font-size: 18px;
+        .relawan-info p {
+            margin: 4px 0;
         }
 
-        .biodata {
-            display: none;
-            padding-top: 10px;
-            font-size: 14px;
-            color: #333;
+        .tags {
+            margin-top: 5px;
         }
 
-        .eye-icon {
+        .tag {
+            display: inline-block;
+            background: #007BFF;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            width: 24px;
-            height: 24px;
+            font-size: 14px;
         }
 
-        #sendIcon {
+        .action-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Notifikasi */
+        #notif {
             display: none;
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        #sendIcon img {
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
         }
     </style>
 </head>
@@ -120,74 +131,65 @@
 <body>
     <header>
         <h1>Rekomendasi Relawan</h1>
-        <p>Daftar Anggota Relawan</p>
+        <p>Hasil filter berdasarkan kegiatan sosial & pengalaman</p>
     </header>
 
-    <div class="container" id="relawanContainer">
-        <div class="relawan-card" ondblclick="toggleSelect(this)">
+    <div class="container">
+        <!-- Card Relawan -->
+        <div class="relawan-card">
+            <img src="img/foto1.jpg" alt="Rina Wijaya">
             <div class="relawan-info">
-                <div class="relawan-img">Rina<br>Wijaya</div>
-                <div>
-                    <div class="relawan-name">Rina Wijaya</div>
-                    <div class="biodata">
-                        <p><strong>Minat:</strong> Pendidikan, Lingkungan</p>
-                        <p><strong>Alamat:</strong> Jakarta</p>
-                        <p><strong>Telepon:</strong> 08123456789</p>
-                        <p><strong>Email:</strong> rina@mail.com</p>
-                        <p><strong>Pengalaman:</strong> 3 tahun jadi relawan lingkungan</p>
-                    </div>
+                <h3>Rina Wijaya</h3>
+                <p><strong>Alamat:</strong> Jakarta Selatan</p>
+                <p><strong>Email:</strong> rina@example.com</p>
+                <p><strong>WhatsApp:</strong> 081234567890</p>
+                <p><strong>Pengalaman:</strong> 3 tahun</p>
+                <div class="tags">
+                    <span class="tag">Pendidikan</span>
+                    <span class="tag">Lingkungan</span>
+                </div>
+                <div class="btn-group">
+                    <button class="action-btn" onclick="tungguKonfirmasi(this)">Klik untuk Menunggu Konfirmasi</button>
                 </div>
             </div>
-            <img src="img/eye.png" class="eye-icon" onclick="toggleBiodata(this)">
         </div>
 
-        <div class="relawan-card" ondblclick="toggleSelect(this)">
+        <div class="relawan-card">
+            <img src="img/foto2.jpg" alt="Budi Santoso">
             <div class="relawan-info">
-                <div class="relawan-img">Budi<br>Santoso</div>
-                <div>
-                    <div class="relawan-name">Budi Santoso</div>
-                    <div class="biodata">
-                        <p><strong>Minat:</strong> Kesehatan, Bencana</p>
-                        <p><strong>Alamat:</strong> Bandung</p>
-                        <p><strong>Telepon:</strong> 08234567890</p>
-                        <p><strong>Email:</strong> budi@mail.com</p>
-                        <p><strong>Pengalaman:</strong> 5 tahun di kegiatan medis</p>
-                    </div>
+                <h3>Budi Santoso</h3>
+                <p><strong>Alamat:</strong> Bandung</p>
+                <p><strong>Email:</strong> budi@example.com</p>
+                <p><strong>WhatsApp:</strong> 082155556666</p>
+                <p><strong>Pengalaman:</strong> 5 tahun</p>
+                <div class="tags">
+                    <span class="tag">Lingkungan</span>
+                    <span class="tag">Kesehatan</span>
+                    <span class="tag">Bencana Alam</span>
+                </div>
+                <div class="btn-group">
+                    <button class="action-btn" onclick="tungguKonfirmasi(this)">Klik untuk Menunggu Konfirmasi</button>
                 </div>
             </div>
-            <img src="img/eye.png" class="eye-icon" onclick="toggleBiodata(this)">
         </div>
     </div>
 
-    <div id="sendIcon" onclick="kirimEmail()">
-        <img src="img/pesawat-kertas.png" alt="Kirim">
-    </div>
+    <!-- Notifikasi -->
+    <div id="notif">Permintaan berhasil dikirim! Mengarahkan ke dashboard...</div>
 
     <script>
-        function toggleBiodata(el) {
-            const bio = el.parentElement.querySelector(".biodata");
-            bio.style.display = bio.style.display === "block" ? "none" : "block";
-        }
+        function tungguKonfirmasi(button) {
+            button.textContent = "Menunggu konfirmasi...";
+            button.disabled = true;
 
-        function toggleSelect(card) {
-            card.classList.toggle("selected");
-            toggleSendIcon();
-        }
+            // Tampilkan notifikasi
+            const notif = document.getElementById("notif");
+            notif.style.display = "block";
 
-        function toggleSendIcon() {
-            const selected = document.querySelectorAll(".relawan-card.selected");
-            document.getElementById("sendIcon").style.display = selected.length > 0 ? "block" : "none";
-        }
-
-        function kirimEmail() {
-            const selected = document.querySelectorAll(".relawan-card.selected");
-            let list = [];
-            selected.forEach(card => {
-                const name = card.querySelector(".relawan-name").innerText;
-                const email = card.querySelector(".biodata").innerText.match(/Email:\s*(.*)/)[1];
-                list.push(`To: ${name} <${email}>`);
-            });
-            alert("Simulasi mengirim email ke:\n" + list.join("\n"));
+            // Redirect setelah 3 detik
+            setTimeout(() => {
+                window.location.href = "dashboard.html"; // Ganti ke halaman sesuai aplikasimu
+            }, 3000);
         }
     </script>
 </body>

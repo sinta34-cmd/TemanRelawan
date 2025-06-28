@@ -116,11 +116,11 @@
             transition: 0.4s;
         }
 
-        input:checked+.slider {
+        input:checked + .slider {
             background-color: #007bff;
         }
 
-        input:checked+.slider:before {
+        input:checked + .slider:before {
             transform: translateX(22px);
         }
 
@@ -169,6 +169,50 @@
         .btn.logout {
             background-color: #d32f2f;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tbody tr {
+            background-color: #f9f9f9;
+        }
+
+        .status-menunggu {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .status-diterima {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-ditolak {
+            color: red;
+            font-weight: bold;
+        }
+
+        .tindak-lanjut a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .tindak-lanjut a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -215,7 +259,46 @@
         </div>
 
         <div class="section">
-            <h3>Atur Profil</h3>
+            <h3>Manajemen Organisasi</h3>
+            <a href="permintaan-konfirmasi.html" class="btn">Lihat Relawan yang Menunggu Konfirmasi</a>
+        </div>
+
+        <div class="section">
+            <h3>Status Lamaran Kegiatan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Kegiatan</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Tindak Lanjut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tanam Pohon di Cibubur</td>
+                        <td>12 Juli 2026</td>
+                        <td class="status-menunggu">Menunggu Konfirmasi</td>
+                        <td class="tindak-lanjut">Mohon tunggu persetujuan dari panitia</td>
+                    </tr>
+                    <tr>
+                        <td>Donor Darah PMI</td>
+                        <td>28 Juni 2026</td>
+                        <td class="status-diterima">Diterima</td>
+                        <td class="tindak-lanjut"><a href="detail-kegiatan.html">Cek detail kegiatan</a></td>
+                    </tr>
+                    <tr>
+                        <td>Bersih Sungai</td>
+                        <td>15 Juli 2026</td>
+                        <td class="status-ditolak">Ditolak</td>
+                        <td class="tindak-lanjut">Relawan penuh silahkan kegiatan lain yang tersedia</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Menu Profil</h3>
             <a href="laporan.html" class="btn">Laporan Kegiatan</a>
             <a href="aturprofil.html" class="btn">Edit Profil</a>
             <a href="login.html" class="btn logout">Logout</a>

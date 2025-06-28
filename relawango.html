@@ -55,15 +55,12 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
-        }
-
-        .form-group input[type="file"] {
-            padding: 5px;
         }
 
         .checkbox-group span {
@@ -98,7 +95,7 @@
     </header>
 
     <div class="container">
-        <form id="kegiatanForm" action="rekomendasi.html" method="get">
+        <form id="kegiatanForm" onsubmit="return handleSubmit(event)">
             <div class="form-group">
                 <label>Nama Kegiatan</label>
                 <input type="text" name="nama" required>
@@ -171,6 +168,23 @@
                 document.getElementById('inputJenis').value = selectedJenis.join(', ');
             });
         });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('kegiatanForm');
+            const data = new FormData(form);
+            const jenis = data.get('jenis');
+            const pengalaman = data.get('pengalaman');
+
+            // Logika Rekomendasi: arahkan berdasarkan jenis
+            const queryParams = new URLSearchParams();
+            for (const pair of data.entries()) {
+                queryParams.append(pair[0], pair[1]);
+            }
+
+            window.location.href = `rekomendasi.html?${queryParams.toString()}`;
+            return false;
+        }
     </script>
 </body>
 
