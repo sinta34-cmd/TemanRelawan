@@ -112,7 +112,6 @@
             color: white;
         }
 
-        /* Tombol Toggle Sidebar */
         .toggle-button {
             position: fixed;
             top: 20px;
@@ -127,31 +126,153 @@
             cursor: pointer;
         }
 
-        .main.full {
-            margin-left: 0;
+        .open-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .chat-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 360px;
+            height: 100%;
+            background: white;
+            border-left: 2px solid #007bff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .chat-panel.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #2196f3;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .chat-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .user-list {
+            width: 100px;
+            background: #1976d2;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .user-list button {
+            padding: 10px;
+            border: none;
+            background: #2196f3;
+            color: white;
+            cursor: pointer;
+            border-bottom: 1px solid #1976d2;
+            text-align: left;
+        }
+
+        .user-list button:hover {
+            background: #0d47a1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #f5f5f5;
+        }
+
+        .bubble {
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 75%;
+            display: inline-block;
+        }
+
+        .bubble.user {
+            background: #e1f5fe;
+            align-self: flex-start;
+        }
+
+        .bubble.admin {
+            background: #bbdefb;
+            align-self: flex-end;
+        }
+
+        .chat-footer {
+            display: flex;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-footer button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <!-- Tombol Toggle Sidebar -->
+    <!-- Tombol Sidebar -->
     <button class="toggle-button" onclick="toggleSidebar()" id="toggleButton">☰</button>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <img src="img/logo.png">
-        <a href="dashboard+useradmin.html" class="active">👤<br>USER</a>
+        <a href="#" class="active">👤<br>USER</a>
         <a href="datauseradmin.html">👥<br>DATA USER</a>
         <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
-        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan menu baru -->
+        <a href="profiladmin.html">⚙️<br>PROFIL</a>
     </div>
 
-    <!-- Main Content -->
     <div class="main" id="mainContent">
         <div class="topbar">
             <div class="title">WELCOME ADMIN<br><small>USER</small></div>
         </div>
-
         <div class="content">
             <table>
                 <thead>
@@ -187,25 +308,87 @@
                         <td>dananggiri@gmail01.com</td>
                         <td>User</td>
                     </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Relawanku</td>
-                        <td>Admin123@gmail.com</td>
-                        <td>Admin</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <button class="open-chat-btn" onclick="toggleChat()">💬 Chat Admin</button>
 
-    <!-- JavaScript -->
+    <div id="chatPanel" class="chat-panel">
+        <div class="chat-header">
+            <span id="chatWith">Chat</span>
+            <button class="close-chat" onclick="toggleChat()">❌</button>
+        </div>
+        <div class="chat-body">
+            <div class="user-list">
+                <button onclick="selectUser('Dewi')">Dewi</button>
+                <button onclick="selectUser('Chelsea')">Chelsea</button>
+                <button onclick="selectUser('Rio')">Rio</button>
+                <button onclick="selectUser('Danang')">Danang</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Ketik pesan..." />
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
     <script>
+        let currentUser = 'Dewi';
+        const chatData = {
+            Dewi: ['Mohon bantuannya untuk reset akun.'],
+            Chelsea: ['Saya ingin melaporkan relawan atas nama "Rita situmorang".'],
+            Rio: ['Kapan jadwal kegiatan berikutnya?'],
+            Danang: ['Apakah ada update data relawan?']
+        };
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const button = document.getElementById('toggleButton');
             sidebar.classList.toggle('hidden');
             button.innerText = '☰';
         }
+
+        function toggleChat() {
+            const panel = document.getElementById('chatPanel');
+            panel.classList.toggle('open');
+        }
+
+        function selectUser(name) {
+            currentUser = name;
+            document.getElementById('chatWith').innerText = 'Chat dengan ' + name;
+            const chatBox = document.getElementById('chatMessages');
+            chatBox.innerHTML = '';
+            (chatData[name] || []).forEach((msg, index) => {
+                const div = document.createElement('div');
+                div.classList.add('bubble');
+                div.classList.add(index % 2 === 0 ? 'user' : 'admin');
+                div.innerText = msg;
+                chatBox.appendChild(div);
+            });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (msg === '') return;
+
+            const chatBox = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.classList.add('bubble', 'admin');
+            div.innerText = msg;
+            chatBox.appendChild(div);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            input.value = '';
+
+            if (!chatData[currentUser]) chatData[currentUser] = [];
+            chatData[currentUser].push(msg);
+        }
+
+        window.onload = () => {
+            selectUser(currentUser);
+        };
     </script>
 </body>
 

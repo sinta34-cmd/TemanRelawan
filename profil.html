@@ -40,12 +40,8 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background-color: #7b1fa2;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
+            object-fit: cover;
+            border: 2px solid #0077cc;
         }
 
         .name {
@@ -116,11 +112,11 @@
             transition: 0.4s;
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: #007bff;
         }
 
-        input:checked + .slider:before {
+        input:checked+.slider:before {
             transform: translateX(22px);
         }
 
@@ -176,7 +172,8 @@
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -223,7 +220,7 @@
 
     <div class="container">
         <div class="profile-header">
-            <div class="avatar">Y</div>
+            <img class="avatar" src="img/foto-profil.jpg" alt="Foto Profil" />
             <div>
                 <div class="name">Yuki Kimo</div>
                 <div>Tergabung sejak 10 jam yang lalu</div>

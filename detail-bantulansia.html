@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Kegiatan - Bantu Lansia</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef7ff;
+            color: #333;
+        }
+
+        header {
+            background: url('img/relawan.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        header h1,
+        header p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-layout {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content {
+            flex: 3;
+        }
+
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            color: #0077cc;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #0077cc;
+        }
+
+        .poster {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 8px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0077cc;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .recommend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .recommend-card {
+            display: flex;
+            gap: 10px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .recommend-card:hover {
+            transform: scale(1.02);
+        }
+
+        .recommend-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .recommend-info {
+            padding: 10px;
+        }
+
+        .recommend-info h4 {
+            margin: 0 0 5px;
+            color: #0077cc;
+            font-size: 16px;
+        }
+
+        .recommend-info p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bantu Lansia</h1>
+        <p>Peduli dan berbagi dengan para orang tua di panti jompo</p>
+    </header>
+
+    <div class="main-layout">
+        <!-- Konten utama -->
+        <div class="content">
+            <div class="container">
+                <img src="img/lansia.jpg" alt="Poster Bantu Lansia" class="poster">
+
+                <h2>Deskripsi</h2>
+                <p>Ayo bergabung dalam kegiatan sosial untuk membantu dan menghibur para lansia di Panti Wreda Melati.
+                    Kita akan berbagi cerita, membantu aktivitas harian, dan memberikan semangat kepada mereka yang
+                    membutuhkan perhatian dan kasih sayang.</p>
+
+                <h2>Kriteria Relawan</h2>
+                <ul>
+                    <li>Berusia minimal 17 tahun</li>
+                    <li>Sabar dan komunikatif</li>
+                    <li>Siap berinteraksi langsung dengan lansia</li>
+                </ul>
+
+                <h2>Cara Mendaftar</h2>
+                <p>Hubungi panitia di <strong>0857-6677-8899</strong> atau kirim email ke
+                    <strong>lansia@temanrelawan.org</strong>
+                </p>
+
+                <h2>Dokumentasi Kegiatan Sebelumnya</h2>
+                <div class="gallery">
+                    <img src="img/lansia1.jpg" alt="Bantu Lansia 1">
+                    <img src="img/lansia2.jpg" alt="Bantu Lansia 2">
+                </div>
+
+                <a href="dashboard.html" class="back-btn">⬅ Kembali ke Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>Informasi Kegiatan</h3>
+            <p><strong>📅 Tanggal:</strong> 28 Juli 2026</p>
+            <p><strong>🕒 Waktu:</strong> 09.00 - 13.00</p>
+            <p><strong>📍 Lokasi:</strong> Panti Wreda Melati, Surakarta</p>
+            <p><strong>🛑 Batas Pendaftaran:</strong> 27 Juli 2026</p>
+
+            <h3 style="margin-top: 30px;">Rekomendasi Kegiatan Lain</h3>
+            <div class="recommend-list">
+                <a class="recommend-card" href="detail-cekkesehatan.html">
+                    <img src="img/cek-kesehatan.jpg" alt="Cek Kesehatan">
+                    <div class="recommend-info">
+                        <h4>Cek Kesehatan</h4>
+                        <p>🗓️ 22 Juli 2026<br>📍 Banjarsari, Solo</p>
+                    </div>
+                </a>
+                <a class="recommend-card" href="detail-edukasisampah.html">
+                    <img src="img/sampah.jpg" alt="Edukasi Sampah">
+                    <div class="recommend-info">
+                        <h4>Edukasi Sampah</h4>
+                        <p>🗓️ 3 Agustus 2026<br>📍 Karanganyar</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -182,11 +182,109 @@
       font-size: 14px;
       color: #555;
     }
+
+    /* =============== BUBBLE CHAT =============== */
+    .chat-bubble-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-right: 1px solid #ccc;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .message.user {
+      background-color: #d2eaff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin: 5px 0;
+      max-width: 80%;
+      align-self: flex-end;
+    }
+
+    .message.admin {
+      background-color: #eeeeee;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin: 5px 0;
+      max-width: 80%;
+      align-self: flex-start;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- ========== HEADER ========== -->
   <header>
     <img src="img/logo.png" class="logo" alt="Logo Teman Relawan">
     <img src="img/foto-profil.jpg" class="profile-icon" alt="Profil" onclick="window.location.href='profil.html'">
@@ -200,14 +298,14 @@
     <div class="ground-line"></div>
   </header>
 
+  <!-- ========== ACTIONS ========== -->
   <div class="actions">
     <button class="btn red" onclick="window.location.href='relawango.html'">Relawan Go</button>
     <button class="btn blue" onclick="window.location.href='cari.html'">Cari Aktivitas</button>
-    <div class="counter" onclick="window.location.href='relawan.html'">
-      Relawan: Senggang
-    </div>
+    <div class="counter" onclick="window.location.href='relawan.html'">Relawan: Senggang</div>
   </div>
 
+  <!-- ========== SECTIONS ========== -->
   <section>
     <h2>Rekomendasi Aktivitas</h2>
     <div class="activity-list">
@@ -238,20 +336,88 @@
           <p>🗓️ 12 Mei 2026<br>📍 Bekasi</p>
         </div>
       </div>
-      <div class="activity-card">
-        <div class="activity-card" onclick="window.location.href='dokumentasi-mengajar\.html'">
-          <img src="img/mengajar.jpeg" alt="Kelas Anak">
-          <div class="activity-info">
-            <h3>Kelas Belajar Anak</h3>
-            <p>🗓️ 30 April 2026<br>📍 Tangerang</p>
-          </div>
+      <div class="activity-card" onclick="window.location.href='dokumentasi-mengajar.html'">
+        <img src="img/mengajar.jpeg" alt="Kelas Anak">
+        <div class="activity-info">
+          <h3>Kelas Belajar Anak</h3>
+          <p>🗓️ 30 April 2026<br>📍 Tangerang</p>
         </div>
       </div>
+    </div>
   </section>
 
   <footer>
     <p><strong>Teman Relawan</strong> &copy; 2025 - Dibuat kelompok 9 (Sinta-Danar-Raina)</p>
   </footer>
+
+  <!-- ========== BUBBLE CHAT HELP DESK ========== -->
+  <div id="chatBubble" class="chat-bubble-button" onclick="toggleChat()">💬 Chat Admin</div>
+
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-header">
+      <span>💬 Help Desk - Admin</span>
+      <button onclick="toggleChat()" class="close-btn">✖</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <!-- Pesan akan muncul di sini -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ketik pesan..."
+        onkeydown="if(event.key === 'Enter') sendMessage()">
+      <button onclick="sendMessage()">Kirim</button>
+    </div>
+  </div>
+
+  <!-- ========== SCRIPT ========== -->
+  <script>
+    let firstOpen = true;
+
+    function toggleChat() {
+      const panel = document.getElementById('chatPanel');
+      const chat = document.getElementById('chatMessages');
+
+      if (panel.style.display === 'flex') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'flex';
+
+        // Bot menyapa satu kali saat pertama kali dibuka
+        if (firstOpen) {
+          const botMessage = document.createElement('div');
+          botMessage.className = 'message admin';
+          botMessage.textContent = "Hai, ada yang bisa kami bantu?";
+          chat.appendChild(botMessage);
+          chat.scrollTop = chat.scrollHeight;
+          firstOpen = false;
+        }
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      const chat = document.getElementById('chatMessages');
+
+      if (message !== "") {
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user';
+        userMsg.textContent = message;
+        chat.appendChild(userMsg);
+
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
+
+        setTimeout(() => {
+          const adminReply = document.createElement('div');
+          adminReply.className = 'message admin';
+          adminReply.textContent = "Pesan Anda telah diterima. Terima kasih.";
+          chat.appendChild(adminReply);
+          chat.scrollTop = chat.scrollHeight;
+        }, 1000);
+      }
+    }
+  </script>
+
 
 </body>
 
