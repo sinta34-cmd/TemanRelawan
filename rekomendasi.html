@@ -131,17 +131,67 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        #notif {
+        /* Modal Popup */
+        .modal {
             display: none;
             position: fixed;
-            bottom: 90px;
-            right: 30px;
-            background: #28a745;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            z-index: 9999;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .modal-content ul {
+            padding-left: 20px;
+        }
+
+        .modal-content a {
+            color: #007bff;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 22px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -155,20 +205,30 @@
     <div class="container" id="relawanList"></div>
 
     <button id="emailBtn" onclick="kirimEmail()">📧</button>
-    <div id="notif"></div>
+
+    <!-- Popup Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="tutupModal()">&times;</span>
+            <h3>📩 Simulasi Pengiriman Email</h3>
+            <p><strong>Kegiatan:</strong> Bantuan Sosial - Pengobatan Gratis</p>
+            <p><strong>Tanggal:</strong> 12 Juli 2025</p>
+            <ul id="emailList"></ul>
+        </div>
+    </div>
 
     <script>
         const relawanData = [
-            { nama: "Rina Wijaya", alamat: "Jakarta", email: "rina@example.com", whatsapp: "081234567890", pengalaman: "3 tahun", tags: ["Pendidikan", "Lingkungan"], foto: "img/wanita.jpg" },
-            { nama: "Budi Santoso", alamat: "Bandung", email: "budi@example.com", whatsapp: "082155556666", pengalaman: "5 tahun", tags: ["Kesehatan", "Bencana Alam"], foto: "img/man.jpg" },
-            { nama: "Siti Aminah", alamat: "Surabaya", email: "siti@example.com", whatsapp: "081345678901", pengalaman: "2 tahun", tags: ["Kesehatan", "Pendidikan"], foto: "img/jule.jpg" },
-            { nama: "Andi Saputra", alamat: "Yogyakarta", email: "andi@example.com", whatsapp: "085612345678", pengalaman: "4 tahun", tags: ["Lingkungan", "Bencana Alam"], foto: "img/user1.jpg" },
-            { nama: "Nina Kartika", alamat: "Bekasi", email: "nina@example.com", whatsapp: "083145678999", pengalaman: "6 tahun", tags: ["Pendidikan", "Kesehatan"], foto: "img/usercw2.jpg" },
-            { nama: "Doni Wahyu", alamat: "Semarang", email: "doni@example.com", whatsapp: "082112233445", pengalaman: "3 tahun", tags: ["Bencana Alam"], foto: "img/user2.jpg" },
-            { nama: "Maya Lestari", alamat: "Makassar", email: "maya@example.com", whatsapp: "081245678912", pengalaman: "2 tahun", tags: ["Kesehatan", "Lingkungan"], foto: "img/usercw3.jpg" },
-            { nama: "Farhan Aditya", alamat: "Depok", email: "farhan@example.com", whatsapp: "085622334455", pengalaman: "1 tahun", tags: ["Pendidikan", "Lingkungan", "Bencana Alam"], foto: "img/user4.jpg" },
-            { nama: "Tiara Putri", alamat: "Bogor", email: "tiara@example.com", whatsapp: "087712345678", pengalaman: "5 tahun", tags: ["Lingkungan", "Kesehatan"], foto: "img/usercw4.jpg" },
-            { nama: "Rafi Maulana", alamat: "Tangerang", email: "rafi@example.com", whatsapp: "088812345678", pengalaman: "3 tahun", tags: ["Pendidikan"], foto: "img/user3.jpg" }
+            { nama: "Rina Wijaya", alamat: "Jakarta", email: "rina@gmail.com", whatsapp: "081234567890", pengalaman: "3 tahun", tags: ["Pendidikan", "Lingkungan"], foto: "img/wanita.jpg" },
+            { nama: "Budi Santoso", alamat: "Bandung", email: "budi@gmail.com", whatsapp: "082155556666", pengalaman: "5 tahun", tags: ["Kesehatan", "Bencana Alam"], foto: "img/man.jpg" },
+            { nama: "Siti Aminah", alamat: "Surabaya", email: "siti@gmail.com", whatsapp: "081345678901", pengalaman: "2 tahun", tags: ["Kesehatan", "Pendidikan"], foto: "img/jule.jpg" },
+            { nama: "Andi Saputra", alamat: "Yogyakarta", email: "andi@gmail.com", whatsapp: "085612345678", pengalaman: "4 tahun", tags: ["Lingkungan", "Bencana Alam"], foto: "img/user1.jpg" },
+            { nama: "Nina Kartika", alamat: "Bekasi", email: "nina@gmail.com", whatsapp: "083145678999", pengalaman: "6 tahun", tags: ["Pendidikan", "Kesehatan"], foto: "img/usercw2.jpg" },
+            { nama: "Doni Wahyu", alamat: "Semarang", email: "doni@gmail.com", whatsapp: "082112233445", pengalaman: "3 tahun", tags: ["Bencana Alam"], foto: "img/user2.jpg" },
+            { nama: "Maya Lestari", alamat: "Makassar", email: "maya@gmail.com", whatsapp: "081245678912", pengalaman: "2 tahun", tags: ["Kesehatan", "Lingkungan"], foto: "img/usercw3.jpg" },
+            { nama: "Farhan Aditya", alamat: "Depok", email: "farhan@gmail.com", whatsapp: "085622334455", pengalaman: "1 tahun", tags: ["Pendidikan", "Lingkungan", "Bencana Alam"], foto: "img/user4.jpg" },
+            { nama: "Tiara Putri", alamat: "Bogor", email: "tiara@gmail.com", whatsapp: "087712345678", pengalaman: "5 tahun", tags: ["Lingkungan", "Kesehatan"], foto: "img/usercw4.jpg" },
+            { nama: "Rafi Maulana", alamat: "Tangerang", email: "rafi@gmail.com", whatsapp: "088812345678", pengalaman: "3 tahun", tags: ["Pendidikan"], foto: "img/user3.jpg" }
         ];
 
         const selectedRelawan = [];
@@ -178,22 +238,22 @@
             card.className = "relawan-card";
             card.ondblclick = () => toggleSelect(card, relawan);
             card.innerHTML = `
-        <img src="${relawan.foto}" class="relawan-foto" alt="${relawan.nama}">
-        <div class="relawan-info">
-          <div class="info-header">
-            <strong>${relawan.nama}</strong>
-            <button class="toggle-detail" onclick="toggleDetail(this)">👁️</button>
-          </div>
-          <div class="detail-info">
-            <p><strong>Alamat:</strong> ${relawan.alamat}</p>
-            <p><strong>Email:</strong> ${relawan.email}</p>
-            <p><strong>WhatsApp:</strong> ${relawan.whatsapp}</p>
-            <p><strong>Pengalaman:</strong> ${relawan.pengalaman}</p>
-            <div class="tags">
-              ${relawan.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-            </div>
-          </div>
-        </div>`;
+                <img src="${relawan.foto}" class="relawan-foto" alt="${relawan.nama}">
+                <div class="relawan-info">
+                    <div class="info-header">
+                        <strong>${relawan.nama}</strong>
+                        <button class="toggle-detail" onclick="toggleDetail(this)">👁️</button>
+                    </div>
+                    <div class="detail-info">
+                        <p><strong>Alamat:</strong> ${relawan.alamat}</p>
+                        <p><strong>Email:</strong> ${relawan.email}</p>
+                        <p><strong>WhatsApp:</strong> ${relawan.whatsapp}</p>
+                        <p><strong>Pengalaman:</strong> ${relawan.pengalaman}</p>
+                        <div class="tags">
+                            ${relawan.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+                        </div>
+                    </div>
+                </div>`;
             document.getElementById("relawanList").appendChild(card);
         }
 
@@ -215,15 +275,36 @@
         }
 
         function kirimEmail() {
-            const emails = selectedRelawan.map(r => r.email).join(", ");
-            const notif = document.getElementById("notif");
-            notif.innerHTML = `📧 Simulasi email dikirim ke:<br><strong>${emails}</strong><br>Berisi link konfirmasi kegiatan.`;
-            notif.style.display = "block";
-            setTimeout(() => notif.style.display = "none", 5000);
+            const emailList = document.getElementById("emailList");
+            emailList.innerHTML = "";
+
+            selectedRelawan.forEach(r => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <strong>${r.nama}</strong> (${r.email})<br>
+                    <a href="https://example.com/konfirmasi/${encodeURIComponent(r.nama)}" target="_blank">
+                        Konfirmasi Kehadiran
+                    </a>
+                `;
+                emailList.appendChild(li);
+            });
+
+            document.getElementById("emailModal").style.display = "block";
+        }
+
+        function tutupModal() {
+            document.getElementById("emailModal").style.display = "none";
         }
 
         window.onload = () => {
             relawanData.forEach((relawan, i) => generateCard(relawan, i));
+        };
+
+        window.onclick = function (event) {
+            const modal = document.getElementById("emailModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         };
     </script>
 </body>

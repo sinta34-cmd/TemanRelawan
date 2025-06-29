@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Data User - Admin</title>
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -78,6 +80,11 @@
 
         .edit-container {
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .edit-toggle {
@@ -94,13 +101,23 @@
             background-color: #dc3545;
         }
 
+        .search-input {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            flex: 1;
+            max-width: 300px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
         }
@@ -138,13 +155,14 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <img src="img/logo.png">
         <a href="dashboard+useradmin.html">👤<br>USER</a>
         <a href="datauseradmin.html" class="active">👥<br>DATA USER</a>
         <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
-        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan menu profil -->
+        <a href="profiladmin.html">⚙️<br>PROFIL</a>
     </div>
 
     <div class="main">
@@ -155,6 +173,7 @@
         <div class="content">
             <div class="edit-container">
                 <button id="editBtn" class="edit-toggle" onclick="toggleEditMode()">🖊️ Edit Mode</button>
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cari nama atau email...">
             </div>
 
             <table id="userTable">
@@ -178,12 +197,26 @@
 
     <script>
         const users = [
-            { id: 1, nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "Sucipto234@gmail.com", telp: "081556789345", rating: 3 },
+            { id: 1, nama: "Adi Sucipto", alamat: "Surakarta", pengalaman: "Donor Darah Massal", email: "sucipto234@gmail.com", telp: "081556789345", rating: 3 },
             { id: 2, nama: "Rehan Mahendra", alamat: "Solo", pengalaman: "Dapur Umum Saat Bencana", email: "hendra0908@gmail.com", telp: "085776231557", rating: 3 },
             { id: 3, nama: "Dwi Utomo", alamat: "Surakarta", pengalaman: "Penggalangan Dana Bencana", email: "dwi4519022@gmail.com", telp: "085342769775", rating: 2 },
-            { id: 4, nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "erikS889032@gmail.com", telp: "081667543980", rating: 4 },
-            { id: 5, nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusP230999@gmail.com", telp: "081778982223", rating: 5 },
-            { id: 6, nama: "Ahamd Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Healt", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 }
+            { id: 4, nama: "Erik Santosa", alamat: "Karanganyar", pengalaman: "Donor Darah Massal", email: "eriks889032@gmail.com", telp: "081667543980", rating: 4 },
+            { id: 5, nama: "Agus Purwo", alamat: "Sukoharjo", pengalaman: "Pembagian Sembako", email: "agusp230999@gmail.com", telp: "081778982223", rating: 5 },
+            { id: 6, nama: "Ahmad Jaya", alamat: "Klaten", pengalaman: "Edukasi Mental Health", email: "jayatama9809@gmail.com", telp: "085667897223", rating: 2 },
+            { id: 7, nama: "Tina Marlina", alamat: "Boyolali", pengalaman: "Penyuluhan Stunting", email: "tina.marlina@gmail.com", telp: "082113445567", rating: 4 },
+            { id: 8, nama: "Sari Lestari", alamat: "Salatiga", pengalaman: "Bagi Masker Gratis", email: "sarilestari@gmail.com", telp: "087812345612", rating: 5 },
+            { id: 9, nama: "Indra Wijaya", alamat: "Wonogiri", pengalaman: "Bersih-bersih Sungai", email: "indra.wijaya@gmail.com", telp: "081322456789", rating: 3 },
+            { id: 10, nama: "Lina Kusuma", alamat: "Boyolali", pengalaman: "Edukasi Sampah Plastik", email: "lina.kusuma@gmail.com", telp: "085634578234", rating: 4 },
+            { id: 11, nama: "Fajar Sidik", alamat: "Surakarta", pengalaman: "Bagi Makanan Takjil", email: "fajar.sidik@gmail.com", telp: "089675432120", rating: 4 },
+            { id: 12, nama: "Mira Anggraeni", alamat: "Solo", pengalaman: "Kegiatan Literasi", email: "mira.anggraeni@gmail.com", telp: "081998765432", rating: 5 },
+            { id: 13, nama: "Kevin Santoso", alamat: "Klaten", pengalaman: "Kegiatan Cuci Tangan", email: "kevin.santoso@gmail.com", telp: "083456789999", rating: 3 },
+            { id: 14, nama: "Bayu Pratama", alamat: "Karanganyar", pengalaman: "Pembagian Masker", email: "bayu.pratama@gmail.com", telp: "082112345678", rating: 4 },
+            { id: 15, nama: "Rita Situmorang", alamat: "Salatiga", pengalaman: "Penyuluhan Narkoba", email: "rita.situmorang@gmail.com", telp: "081289003456", rating: 2 },
+            { id: 16, nama: "Tommy Gunawan", alamat: "Sukoharjo", pengalaman: "Penyuluhan Covid-19", email: "tommy.gunawan@gmail.com", telp: "087766554433", rating: 4 },
+            { id: 17, nama: "Winda Ayu", alamat: "Wonogiri", pengalaman: "Kegiatan Posyandu", email: "winda.ayu@gmail.com", telp: "089987654321", rating: 3 },
+            { id: 18, nama: "Nina Marlina", alamat: "Klaten", pengalaman: "Kegiatan Bersih Pantai", email: "nina.marlina@gmail.com", telp: "086512378940", rating: 4 },
+            { id: 19, nama: "Eka Sari", alamat: "Boyolali", pengalaman: "Senam Lansia", email: "ekasari@gmail.com", telp: "083123456789", rating: 3 },
+            { id: 20, nama: "Intan Permata", alamat: "Karanganyar", pengalaman: "Penyuluhan Imunisasi", email: "intan.permata@gmail.com", telp: "085678912345", rating: 5 },
         ];
 
         let editMode = false;
@@ -195,31 +228,37 @@
         }
 
         function renderUsers() {
-            const sortedUsers = users.sort((a, b) => b.rating - a.rating);
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
             const tbody = document.getElementById("userBody");
             tbody.innerHTML = "";
 
-            sortedUsers.forEach((user, index) => {
-                const row = document.createElement("tr");
-                if (editMode) {
-                    row.classList.add("editable");
-                    row.onclick = () => window.location.href = `edituser.html?id=${user.id}`;
-                }
+            const filtered = users.filter(u =>
+                u.nama.toLowerCase().includes(keyword) || u.email.toLowerCase().includes(keyword)
+            );
 
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${user.nama}</td>
-                    <td>${user.alamat}</td>
-                    <td>${user.pengalaman}</td>
-                    <td>${user.email}</td>
-                    <td>${user.telp}</td>
-                    <td class="stars">
-                        ${[...Array(5)].map((_, i) =>
-                            `<span onclick="changeRating(event, ${user.id}, ${i + 1})">${i < user.rating ? '★' : '☆'}</span>`).join('')}
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
+            filtered
+                .sort((a, b) => b.rating - a.rating)
+                .forEach((user, index) => {
+                    const row = document.createElement("tr");
+                    if (editMode) {
+                        row.classList.add("editable");
+                        row.onclick = () => window.location.href = `edituser.html?id=${user.id}`;
+                    }
+
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${user.nama}</td>
+                        <td>${user.alamat}</td>
+                        <td>${user.pengalaman}</td>
+                        <td>${user.email}</td>
+                        <td>${user.telp}</td>
+                        <td class="stars">
+                            ${[...Array(5)].map((_, i) =>
+                        `<span onclick="changeRating(event, ${user.id}, ${i + 1})">${i < user.rating ? '★' : '☆'}</span>`).join('')}
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
         }
 
         function changeRating(event, userId, newRating) {
@@ -231,7 +270,9 @@
             }
         }
 
+        document.getElementById("searchInput").addEventListener("input", renderUsers);
         renderUsers();
     </script>
 </body>
+
 </html>

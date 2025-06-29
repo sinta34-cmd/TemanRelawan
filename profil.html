@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8" />
     <title>Profil Relawan</title>
@@ -37,12 +38,9 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background-color: #7b1fa2;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
+            object-fit: cover;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
 
         .name {
@@ -113,11 +111,11 @@
             transition: 0.4s;
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: #007bff;
         }
 
-        input:checked + .slider:before {
+        input:checked+.slider:before {
             transform: translateX(22px);
         }
 
@@ -175,7 +173,8 @@
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -235,6 +234,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Profil Relawan</h1>
@@ -250,7 +250,7 @@
         </div>
 
         <div class="profile-header">
-            <div class="avatar">Y</div>
+            <img class="avatar" src="img/foto-profil.jpg" alt="Foto Relawan">
             <div>
                 <div class="name">Yuki Kimo</div>
                 <div>Tergabung sejak 10 jam yang lalu</div>
@@ -285,7 +285,6 @@
             </div>
         </div>
 
-        <!-- Bagian Pencari Relawan -->
         <div class="section" id="bagianResponRelawan" style="display: none;">
             <h3>Respon Relawan yang kamu pilih</h3>
             <button class="btn" onclick="cekResponRelawan()">Lihat Respon Relawan</button>
@@ -320,7 +319,6 @@
             </table>
         </div>
 
-        <!-- Bagian Relawan -->
         <div class="section" id="bagianStatusLamaran" style="display: none;">
             <h3>Status Lamaran Kegiatan</h3>
             <table>
@@ -366,8 +364,6 @@
                 <div id="balasanAdmin">✅ Admin akan segera meninjau laporan Anda.</div>
             </div>
             <a href="login.html" class="btn logout">Logout</a>
-
-            
         </div>
     </div>
 
@@ -478,4 +474,5 @@
         window.onload = tampilkanBerdasarkanMode;
     </script>
 </body>
+
 </html>

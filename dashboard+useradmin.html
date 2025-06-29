@@ -11,11 +11,12 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
             font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            height: 100vh;
             background-color: #a7cbff;
+            height: 100%;
+            overflow-y: auto;
         }
 
         .sidebar {
@@ -25,7 +26,12 @@
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
             transition: all 0.3s ease;
+            z-index: 999;
         }
 
         .sidebar.hidden {
@@ -56,25 +62,20 @@
         }
 
         .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: white;
+            margin-left: 150px;
+            padding-top: 60px;
+            padding-bottom: 40px;
         }
 
         .topbar {
             background-color: #b4d3ff;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-        }
-
-        .topbar nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
+            position: fixed;
+            top: 0;
+            left: 150px;
+            right: 0;
+            z-index: 998;
         }
 
         .title {
@@ -85,6 +86,8 @@
 
         .content {
             padding: 30px;
+            padding-top: 100px;
+            padding-bottom: 80px;
         }
 
         table {
@@ -257,10 +260,9 @@
 </head>
 
 <body>
-    <!-- Tombol Sidebar -->
-    <button class="toggle-button" onclick="toggleSidebar()" id="toggleButton">☰</button>
 
-    <!-- Sidebar -->
+    <button class="toggle-button" onclick="toggleSidebar()">☰</button>
+
     <div class="sidebar" id="sidebar">
         <img src="img/logo.png">
         <a href="#" class="active">👤<br>USER</a>
@@ -269,7 +271,7 @@
         <a href="profiladmin.html">⚙️<br>PROFIL</a>
     </div>
 
-    <div class="main" id="mainContent">
+    <div class="main">
         <div class="topbar">
             <div class="title">WELCOME ADMIN<br><small>USER</small></div>
         </div>
@@ -284,6 +286,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Data Users -->
+                    <!-- contoh baris -->
                     <tr>
                         <td>1</td>
                         <td>Dewi Pujiyanti</td>
@@ -308,10 +312,107 @@
                         <td>dananggiri@gmail01.com</td>
                         <td>User</td>
                     </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Ayu Maulida</td>
+                        <td>ayumaulida@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Budi Santoso</td>
+                        <td>budi123@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Ratna Sari</td>
+                        <td>ratnasari89@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Agus Wijaya</td>
+                        <td>aguswijaya@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Lina Kurnia</td>
+                        <td>lina.kurnia@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Yudi Setiawan</td>
+                        <td>yudi.setiawan@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Sari Lestari</td>
+                        <td>sarilestari@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Rian Saputra</td>
+                        <td>riansaputra@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Nina Marlina</td>
+                        <td>nina.marlina@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Doni Pratama</td>
+                        <td>donipratama@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Winda Ayu</td>
+                        <td>winda.ayu@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Tomy Gunawan</td>
+                        <td>tomy.gunawan@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Rita Situmorang</td>
+                        <td>rita.situmorang@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Eka Sari</td>
+                        <td>ekasari@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Bayu Nugroho</td>
+                        <td>bayu.nugroho@gmail.com</td>
+                        <td>User</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Intan Permata</td>
+                        <td>intan.permata@gmail.com</td>
+                        <td>User</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
     <button class="open-chat-btn" onclick="toggleChat()">💬 Chat Admin</button>
 
     <div id="chatPanel" class="chat-panel">
@@ -325,6 +426,7 @@
                 <button onclick="selectUser('Chelsea')">Chelsea</button>
                 <button onclick="selectUser('Rio')">Rio</button>
                 <button onclick="selectUser('Danang')">Danang</button>
+                <button onclick="selectUser('Ayu')">Ayu</button>
             </div>
             <div class="chat-messages" id="chatMessages"></div>
         </div>
@@ -333,20 +435,20 @@
             <button onclick="sendMessage()">Kirim</button>
         </div>
     </div>
+
     <script>
         let currentUser = 'Dewi';
         const chatData = {
             Dewi: ['Mohon bantuannya untuk reset akun.'],
             Chelsea: ['Saya ingin melaporkan relawan atas nama "Rita situmorang".'],
             Rio: ['Kapan jadwal kegiatan berikutnya?'],
-            Danang: ['Apakah ada update data relawan?']
+            Danang: ['Apakah ada update data relawan?'],
+            Ayu: ['Terima kasih, kegiatan kemarin sangat bermanfaat.']
         };
 
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            const button = document.getElementById('toggleButton');
             sidebar.classList.toggle('hidden');
-            button.innerText = '☰';
         }
 
         function toggleChat() {
@@ -361,8 +463,7 @@
             chatBox.innerHTML = '';
             (chatData[name] || []).forEach((msg, index) => {
                 const div = document.createElement('div');
-                div.classList.add('bubble');
-                div.classList.add(index % 2 === 0 ? 'user' : 'admin');
+                div.classList.add('bubble', index % 2 === 0 ? 'user' : 'admin');
                 div.innerText = msg;
                 chatBox.appendChild(div);
             });
@@ -372,17 +473,11 @@
             const input = document.getElementById('chatInput');
             const msg = input.value.trim();
             if (msg === '') return;
-
-            const chatBox = document.getElementById('chatMessages');
             const div = document.createElement('div');
             div.classList.add('bubble', 'admin');
             div.innerText = msg;
-            chatBox.appendChild(div);
-
-            chatBox.scrollTop = chatBox.scrollHeight;
+            document.getElementById('chatMessages').appendChild(div);
             input.value = '';
-
-            if (!chatData[currentUser]) chatData[currentUser] = [];
             chatData[currentUser].push(msg);
         }
 
@@ -390,6 +485,7 @@
             selectUser(currentUser);
         };
     </script>
+
 </body>
 
 </html>
