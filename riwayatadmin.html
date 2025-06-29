@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Riwayat Kegiatan</title>
@@ -69,6 +70,65 @@
             padding: 30px;
         }
 
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #d9eaff;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .tabs button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .status-berhasil {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-gagal {
+            color: red;
+            font-weight: bold;
+        }
+
+        .status-akan {
+            color: orange;
+            font-weight: bold;
+        }
+
         .card {
             background: white;
             padding: 20px;
@@ -96,11 +156,6 @@
             margin: 5px;
             border-radius: 6px;
         }
-
-        ul {
-            margin: 0;
-            padding-left: 20px;
-        }
     </style>
 </head>
 
@@ -110,7 +165,7 @@
         <a href="dashboard+useradmin.html">👤<br>USER</a>
         <a href="datauseradmin.html">👥<br>DATA USER</a>
         <a href="riwayatadmin.html" class="active">📑<br>RIWAYAT KEGIATAN</a>
-        <a href="profiladmin.html">⚙️<br>PROFIL</a> <!-- Tambahan -->
+        <a href="profiladmin.html">⚙️<br>PROFIL</a>
     </div>
 
     <div class="main">
@@ -119,46 +174,91 @@
         </div>
 
         <div class="content">
-            <div class="card" onclick="toggleDetail(this)">
-                <h3>Bersih Yuk</h3>
-                <p>27 Juni 2026 - Kali Pepe, Solo</p>
-                <div class="detail">
-                    <p><strong>Deskripsi:</strong> Aksi bersih-bersih sungai bersama komunitas peduli lingkungan dalam rangka memperingati Hari Lingkungan Hidup.</p>
-                    <p><strong>Hari:</strong> Sabtu, 27 Juni 2026</p>
-                    <p><strong>Relawan yang ikut serta:</strong></p>
-                    <ul>
-                        <li>Dimas Setiawan</li>
-                        <li>Sari Lestari</li>
-                        <li>Fajar Nugroho</li>
-                        <li>Arif Setyo</li>
-                        <li>Lina Putri</li>
-                    </ul>
-                    <p><strong>Laporan:</strong> Kegiatan berjalan lancar. Total 50 kg sampah berhasil dikumpulkan dari sungai dan area sekitar. Antusiasme masyarakat sangat tinggi. Didokumentasikan oleh tim media.</p>
-                    <div class="gallery">
-                        <img src="img/sungai.jpg" alt="Foto 1">
-                        <img src="img/sungai 2.jpeg" alt="Foto 2">
-                    </div>
-                </div>
+            <div class="tabs">
+                <button class="tablink active" onclick="openTab(event, 'rekap')">Rekap</button>
+                <button class="tablink" onclick="openTab(event, 'laporan')">Laporan</button>
             </div>
 
-            <div class="card" onclick="toggleDetail(this)">
-                <h3>Tanam Pohon Bersama</h3>
-                <p>15 Juli 2026 - Taman Hutan Kota</p>
-                <div class="detail">
-                    <p><strong>Deskripsi:</strong> Penanaman 200 bibit pohon bersama siswa sekolah dan relawan lingkungan dalam rangka program penghijauan kota.</p>
-                    <p><strong>Hari:</strong> Senin, 15 Juli 2026</p>
-                    <p><strong>Relawan yang ikut serta:</strong></p>
-                    <ul>
-                        <li>Bayu Pratama</li>
-                        <li>Intan Sari</li>
-                        <li>Rani Melati</li>
-                        <li>Dino Saputra</li>
-                        <li>Alia Kusuma</li>
-                    </ul>
-                    <p><strong>Laporan:</strong> Total 200 pohon berhasil ditanam di area hutan kota. Kegiatan ini melibatkan 3 sekolah dan 25 relawan. Dokumentasi telah disimpan di galeri pusat dan media sosial resmi Teman Relawan.</p>
-                    <div class="gallery">
-                        <img src="img/tanampohon2.jpeg" alt="Foto 1">
-                        <img src="img/pohon.jpeg" alt="Foto 2">
+            <div id="rekap" class="tab-content active">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Kegiatan</th>
+                            <th>Tanggal</th>
+                            <th>Tempat</th>
+                            <th>Status</th>
+                            <th>Alasan (jika gagal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bersih Yuk</td>
+                            <td>27 Juni 2026</td>
+                            <td>Kali Pepe, Solo</td>
+                            <td class="status-berhasil">Berhasil</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Tanam Pohon Bersama</td>
+                            <td>15 Juli 2026</td>
+                            <td>Taman Hutan Kota</td>
+                            <td class="status-berhasil">Berhasil</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Cek Kesehatan Gratis</td>
+                            <td>10 Juli 2026</td>
+                            <td>Balai RW 03</td>
+                            <td class="status-gagal">Gagal</td>
+                            <td>Tenaga medis berhalangan hadir</td>
+                        </tr>
+                        <tr>
+                            <td>Penyuluhan Sampah</td>
+                            <td>5 Agustus 2026</td>
+                            <td>SD Negeri 1</td>
+                            <td class="status-akan">Akan Dilaksanakan</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="laporan" class="tab-content">
+                <div class="card" onclick="toggleDetail(this)">
+                    <h3>Bersih Yuk</h3>
+                    <p>27 Juni 2026 - Kali Pepe, Solo</p>
+                    <div class="detail">
+                        <p><strong>Deskripsi:</strong> Aksi bersih-bersih sungai dalam rangka Hari Lingkungan Hidup.</p>
+                        <p><strong>Hari:</strong> Sabtu, 27 Juni 2026</p>
+                        <p><strong>Relawan yang ikut serta:</strong></p>
+                        <ul>
+                            <li>Dimas Setiawan</li>
+                            <li>Sari Lestari</li>
+                        </ul>
+                        <p><strong>Laporan:</strong> Kegiatan berjalan lancar. 50 kg sampah berhasil dikumpulkan.</p>
+                        <div class="gallery">
+                            <img src="img/sungai.jpg" alt="Foto 1">
+                            <img src="img/sungai 2.jpeg" alt="Foto 2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" onclick="toggleDetail(this)">
+                    <h3>Tanam Pohon Bersama</h3>
+                    <p>15 Juli 2026 - Taman Hutan Kota</p>
+                    <div class="detail">
+                        <p><strong>Deskripsi:</strong> Penanaman 200 bibit pohon bersama siswa dan relawan.</p>
+                        <p><strong>Hari:</strong> Senin, 15 Juli 2026</p>
+                        <p><strong>Relawan yang ikut serta:</strong></p>
+                        <ul>
+                            <li>Bayu Pratama</li>
+                            <li>Intan Sari</li>
+                        </ul>
+                        <p><strong>Laporan:</strong> 200 pohon berhasil ditanam. Dokumentasi lengkap tersedia.</p>
+                        <div class="gallery">
+                            <img src="img/tanampohon2.jpeg" alt="Foto 1">
+                            <img src="img/pohon.jpeg" alt="Foto 2">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,10 +266,22 @@
     </div>
 
     <script>
+        function openTab(evt, tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const tablinks = document.querySelectorAll('.tablink');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tablinks.forEach(link => link.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
         function toggleDetail(card) {
             const detail = card.querySelector('.detail');
             detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>
+
 </html>

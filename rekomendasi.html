@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Rekomendasi Relawan - Teman Relawan</title>
+    <title>Rekomendasi Relawan</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -38,7 +38,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
             background: white;
@@ -47,20 +47,27 @@
 
         .relawan-card {
             display: flex;
-            gap: 20px;
+            align-items: flex-start;
             background-color: #d6ecff;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
-            align-items: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .relawan-card img {
-            width: 100px;
-            height: 100px;
+        .relawan-card.selected {
+            background-color: #b3dbff;
+            border: 2px solid #007bff;
+        }
+
+        .relawan-foto {
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 50%;
+            margin-right: 15px;
             border: 2px solid white;
         }
 
@@ -68,13 +75,31 @@
             flex: 1;
         }
 
-        .relawan-info h3 {
-            margin: 0 0 5px;
-            color: #007BFF;
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .relawan-info p {
-            margin: 4px 0;
+        .info-header strong {
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .toggle-detail {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .detail-info {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .detail-info.show {
+            display: block;
         }
 
         .tags {
@@ -91,38 +116,31 @@
             font-size: 12px;
         }
 
-        .btn-group {
-            margin-top: 10px;
-        }
-
-        .action-btn {
-            padding: 8px 16px;
-            background-color: #28a745;
+        #emailBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #007bff;
             color: white;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-size: 20px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .action-btn:disabled {
-            background-color: #6c757d;
-            cursor: not-allowed;
-        }
-
-        /* Notifikasi */
         #notif {
             display: none;
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 90px;
+            right: 30px;
             background: #28a745;
             color: white;
-            padding: 15px 25px;
+            padding: 15px 20px;
             border-radius: 8px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 9999;
         }
     </style>
@@ -134,63 +152,79 @@
         <p>Hasil filter berdasarkan kegiatan sosial & pengalaman</p>
     </header>
 
-    <div class="container">
-        <!-- Card Relawan -->
-        <div class="relawan-card">
-            <img src="img/foto1.jpg" alt="Rina Wijaya">
-            <div class="relawan-info">
-                <h3>Rina Wijaya</h3>
-                <p><strong>Alamat:</strong> Jakarta Selatan</p>
-                <p><strong>Email:</strong> rina@example.com</p>
-                <p><strong>WhatsApp:</strong> 081234567890</p>
-                <p><strong>Pengalaman:</strong> 3 tahun</p>
-                <div class="tags">
-                    <span class="tag">Pendidikan</span>
-                    <span class="tag">Lingkungan</span>
-                </div>
-                <div class="btn-group">
-                    <button class="action-btn" onclick="tungguKonfirmasi(this)">Klik untuk Menunggu Konfirmasi</button>
-                </div>
-            </div>
-        </div>
+    <div class="container" id="relawanList"></div>
 
-        <div class="relawan-card">
-            <img src="img/foto2.jpg" alt="Budi Santoso">
-            <div class="relawan-info">
-                <h3>Budi Santoso</h3>
-                <p><strong>Alamat:</strong> Bandung</p>
-                <p><strong>Email:</strong> budi@example.com</p>
-                <p><strong>WhatsApp:</strong> 082155556666</p>
-                <p><strong>Pengalaman:</strong> 5 tahun</p>
-                <div class="tags">
-                    <span class="tag">Lingkungan</span>
-                    <span class="tag">Kesehatan</span>
-                    <span class="tag">Bencana Alam</span>
-                </div>
-                <div class="btn-group">
-                    <button class="action-btn" onclick="tungguKonfirmasi(this)">Klik untuk Menunggu Konfirmasi</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notifikasi -->
-    <div id="notif">Permintaan berhasil dikirim! Mengarahkan ke dashboard...</div>
+    <button id="emailBtn" onclick="kirimEmail()">📧</button>
+    <div id="notif"></div>
 
     <script>
-        function tungguKonfirmasi(button) {
-            button.textContent = "Menunggu konfirmasi...";
-            button.disabled = true;
+        const relawanData = [
+            { nama: "Rina Wijaya", alamat: "Jakarta", email: "rina@example.com", whatsapp: "081234567890", pengalaman: "3 tahun", tags: ["Pendidikan", "Lingkungan"], foto: "img/foto1.jpg" },
+            { nama: "Budi Santoso", alamat: "Bandung", email: "budi@example.com", whatsapp: "082155556666", pengalaman: "5 tahun", tags: ["Kesehatan", "Bencana Alam"], foto: "img/foto2.jpg" },
+            { nama: "Siti Aminah", alamat: "Surabaya", email: "siti@example.com", whatsapp: "081345678901", pengalaman: "2 tahun", tags: ["Kesehatan", "Pendidikan"], foto: "img/foto3.jpg" },
+            { nama: "Andi Saputra", alamat: "Yogyakarta", email: "andi@example.com", whatsapp: "085612345678", pengalaman: "4 tahun", tags: ["Lingkungan", "Bencana Alam"], foto: "img/foto4.jpg" },
+            { nama: "Nina Kartika", alamat: "Bekasi", email: "nina@example.com", whatsapp: "083145678999", pengalaman: "6 tahun", tags: ["Pendidikan", "Kesehatan"], foto: "img/foto5.jpg" },
+            { nama: "Doni Wahyu", alamat: "Semarang", email: "doni@example.com", whatsapp: "082112233445", pengalaman: "3 tahun", tags: ["Bencana Alam"], foto: "img/foto6.jpg" },
+            { nama: "Maya Lestari", alamat: "Makassar", email: "maya@example.com", whatsapp: "081245678912", pengalaman: "2 tahun", tags: ["Kesehatan", "Lingkungan"], foto: "img/foto7.jpg" },
+            { nama: "Farhan Aditya", alamat: "Depok", email: "farhan@example.com", whatsapp: "085622334455", pengalaman: "1 tahun", tags: ["Pendidikan", "Lingkungan", "Bencana Alam"], foto: "img/foto8.jpg" },
+            { nama: "Tiara Putri", alamat: "Bogor", email: "tiara@example.com", whatsapp: "087712345678", pengalaman: "5 tahun", tags: ["Lingkungan", "Kesehatan"], foto: "img/foto9.jpg" },
+            { nama: "Rafi Maulana", alamat: "Tangerang", email: "rafi@example.com", whatsapp: "088812345678", pengalaman: "3 tahun", tags: ["Pendidikan"], foto: "img/foto10.jpg" }
+        ];
 
-            // Tampilkan notifikasi
-            const notif = document.getElementById("notif");
-            notif.style.display = "block";
+        const selectedRelawan = [];
 
-            // Redirect setelah 3 detik
-            setTimeout(() => {
-                window.location.href = "dashboard.html"; // Ganti ke halaman sesuai aplikasimu
-            }, 3000);
+        function generateCard(relawan, index) {
+            const card = document.createElement("div");
+            card.className = "relawan-card";
+            card.ondblclick = () => toggleSelect(card, relawan);
+            card.innerHTML = `
+        <img src="${relawan.foto}" class="relawan-foto" alt="${relawan.nama}">
+        <div class="relawan-info">
+          <div class="info-header">
+            <strong>${relawan.nama}</strong>
+            <button class="toggle-detail" onclick="toggleDetail(this)">👁️</button>
+          </div>
+          <div class="detail-info">
+            <p><strong>Alamat:</strong> ${relawan.alamat}</p>
+            <p><strong>Email:</strong> ${relawan.email}</p>
+            <p><strong>WhatsApp:</strong> ${relawan.whatsapp}</p>
+            <p><strong>Pengalaman:</strong> ${relawan.pengalaman}</p>
+            <div class="tags">
+              ${relawan.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+            </div>
+          </div>
+        </div>`;
+            document.getElementById("relawanList").appendChild(card);
         }
+
+        function toggleDetail(button) {
+            const detail = button.closest(".relawan-info").querySelector(".detail-info");
+            detail.classList.toggle("show");
+        }
+
+        function toggleSelect(card, relawan) {
+            card.classList.toggle("selected");
+            const idx = selectedRelawan.indexOf(relawan);
+            if (idx === -1) {
+                selectedRelawan.push(relawan);
+            } else {
+                selectedRelawan.splice(idx, 1);
+            }
+
+            document.getElementById("emailBtn").style.display = selectedRelawan.length > 0 ? "block" : "none";
+        }
+
+        function kirimEmail() {
+            const emails = selectedRelawan.map(r => r.email).join(", ");
+            const notif = document.getElementById("notif");
+            notif.innerHTML = `📧 Simulasi email dikirim ke:<br><strong>${emails}</strong><br>Berisi link konfirmasi kegiatan.`;
+            notif.style.display = "block";
+            setTimeout(() => notif.style.display = "none", 5000);
+        }
+
+        window.onload = () => {
+            relawanData.forEach((relawan, i) => generateCard(relawan, i));
+        };
     </script>
 </body>
 
