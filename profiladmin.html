@@ -1,217 +1,226 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Profil Admin</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #a7cbff;
-            display: flex;
-            height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <title>Profil Admin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #a7cbff;
+      display: flex;
+      height: 100vh;
+    }
 
-        .sidebar {
-            width: 150px;
-            background-color: #82b1f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 20px;
-        }
+    .sidebar {
+      width: 150px;
+      background-color: #82b1f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
 
-        .sidebar img {
-            width: 80px;
-            margin-bottom: 20px;
-        }
+    .sidebar img {
+      width: 80px;
+      margin-bottom: 20px;
+    }
 
-        .sidebar a {
-            text-decoration: none;
-            color: black;
-            margin: 10px 0;
-            font-size: 14px;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-        }
+    .sidebar a {
+      text-decoration: none;
+      color: black;
+      margin: 10px 0;
+      font-size: 14px;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+    }
 
-        .sidebar a:hover,
-        .sidebar a.active {
-            background-color: white;
-            font-weight: bold;
-        }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: white;
+      font-weight: bold;
+    }
 
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-        }
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
 
-        .topbar {
-            background-color: #b4d3ff;
-            padding: 20px;
-            text-align: center;
-        }
+    .topbar {
+      background-color: #b4d3ff;
+      padding: 20px;
+      text-align: center;
+    }
 
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
 
-        .content {
-            padding: 30px;
-        }
+    .content {
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+    }
 
-        .profile-box,
-        .edit-box {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .profile-box,
+    .edit-box {
+      background-color: #f5f5f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+    }
 
-        .profile-box h2 {
-            margin-bottom: 15px;
-        }
+    .profile-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #000;
+    }
 
-        .profile-box p {
-            margin: 6px 0;
-        }
+    .profile-box p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
 
-        .btn-edit {
-            margin-top: 20px;
-            background-color: #4a90e2;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    .profile-box strong {
+      color: #000;
+    }
 
-        .btn-edit:hover {
-            background-color: #357abd;
-        }
+    .btn-edit {
+      margin-top: 20px;
+      background-color: #5c87f5;
+      color: white;
+      padding: 10px 18px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-        .edit-box label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+    .btn-edit:hover {
+      background-color: #3f6ad8;
+    }
 
-        .edit-box input, .edit-box select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 4px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    .edit-box label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        .edit-box .btn-save {
-            margin-top: 20px;
-            background-color: #28a745;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    .edit-box input,
+    .edit-box select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-        .edit-box .btn-save:hover {
-            background-color: #218838;
-        }
-    </style>
+    .btn-save {
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 18px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-save:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="sidebar">
-        <img src="img/logo.png">
-        <a href="dashboard+useradmin.html">👤<br>USER</a>
-        <a href="datauseradmin.html">👥<br>DATA USER</a>
-        <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
-        <a href="profiladmin.html" class="active">⚙️<br>PROFIL</a>
+  <div class="sidebar">
+    <img src="img/logo.png">
+    <a href="dashboard+useradmin.html">👤<br>USER</a>
+    <a href="datauseradmin.html">👥<br>DATA USER</a>
+    <a href="riwayatadmin.html">📑<br>RIWAYAT KEGIATAN</a>
+    <a href="profiladmin.html" class="active">⚙️<br>PROFIL</a>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="title">PROFIL ADMIN</div>
     </div>
 
-    <div class="main">
-        <div class="topbar">
-            <div class="title">PROFIL ADMIN</div>
-        </div>
+    <div class="content">
+      <!-- Tampilan Profil -->
+      <div class="profile-box" id="profileView">
+        <h2 id="namaView">Relawanku Admin</h2>
+        <p><strong>Email:</strong> <span id="emailView">admin123@gmail.com</span></p>
+        <p><strong>Role:</strong> <span id="roleView">Admin</span></p>
+        <p><strong>Tanggal Lahir:</strong> <span id="lahirView">1 Januari 1990</span></p>
+        <p><strong>Jenis Kelamin:</strong> <span id="genderView">Laki-laki</span></p>
+        <p><strong>Alamat:</strong> <span id="alamatView">Surakarta</span></p>
+        <p><strong>Telepon:</strong> <span id="teleponView">081234567890</span></p>
+        <button class="btn-edit" onclick="toggleEdit(true)">✏️ Edit Profil</button>
+      </div>
 
-        <div class="content">
-            <div class="profile-box" id="profileView">
-                <h2 id="namaView">Relawanku Admin</h2>
-                <p><strong>Email:</strong> <span id="emailView">admin123@gmail.com</span></p>
-                <p><strong>Role:</strong> <span id="roleView">Admin</span></p>
-                <p><strong>Tanggal Lahir:</strong> <span id="lahirView">1 Januari 1990</span></p>
-                <p><strong>Jenis Kelamin:</strong> <span id="genderView">Laki-laki</span></p>
-                <p><strong>Alamat:</strong> <span id="alamatView">Surakarta</span></p>
-                <p><strong>Telepon:</strong> <span id="teleponView">081234567890</span></p>
-                <button class="btn-edit" onclick="toggleEdit(true)">✏️ Edit Profil</button>
-            </div>
+      <!-- Form Edit Profil -->
+      <div class="edit-box" id="editForm" style="display: none;">
+        <label>Nama Lengkap</label>
+        <input type="text" id="namaInput" value="Relawanku Admin">
 
-            <div class="edit-box" id="editForm" style="display: none;">
-                <label>Nama Lengkap</label>
-                <input type="text" id="namaInput" value="Relawanku Admin">
+        <label>Email</label>
+        <input type="email" id="emailInput" value="admin123@gmail.com">
 
-                <label>Email</label>
-                <input type="email" id="emailInput" value="admin123@gmail.com">
+        <label>Role</label>
+        <input type="text" id="roleInput" value="Admin">
 
-                <label>Role</label>
-                <input type="text" id="roleInput" value="Admin">
+        <label>Tanggal Lahir</label>
+        <input type="date" id="lahirInput" value="1990-01-01">
 
-                <label>Tanggal Lahir</label>
-                <input type="date" id="lahirInput" value="1990-01-01">
+        <label>Jenis Kelamin</label>
+        <select id="genderInput">
+          <option>Laki-laki</option>
+          <option>Perempuan</option>
+        </select>
 
-                <label>Jenis Kelamin</label>
-                <select id="genderInput">
-                    <option>Laki-laki</option>
-                    <option>Perempuan</option>
-                </select>
+        <label>Alamat</label>
+        <input type="text" id="alamatInput" value="Surakarta">
 
-                <label>Alamat</label>
-                <input type="text" id="alamatInput" value="Surakarta">
+        <label>Telepon</label>
+        <input type="text" id="teleponInput" value="081234567890">
 
-                <label>Telepon</label>
-                <input type="text" id="teleponInput" value="081234567890">
-
-                <button class="btn-save" onclick="saveProfile()">💾 Simpan</button>
-            </div>
-        </div>
+        <button class="btn-save" onclick="saveProfile()">💾 Simpan</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        function toggleEdit(show) {
-            document.getElementById('profileView').style.display = show ? 'none' : 'block';
-            document.getElementById('editForm').style.display = show ? 'block' : 'none';
-        }
+  <script>
+    function toggleEdit(show) {
+      document.getElementById('profileView').style.display = show ? 'none' : 'block';
+      document.getElementById('editForm').style.display = show ? 'block' : 'none';
+    }
 
-        function saveProfile() {
-            // Ambil data dari input
-            const nama = document.getElementById('namaInput').value;
-            const email = document.getElementById('emailInput').value;
-            const role = document.getElementById('roleInput').value;
-            const lahir = document.getElementById('lahirInput').value;
-            const gender = document.getElementById('genderInput').value;
-            const alamat = document.getElementById('alamatInput').value;
-            const telepon = document.getElementById('teleponInput').value;
+    function saveProfile() {
+      const nama = document.getElementById('namaInput').value;
+      const email = document.getElementById('emailInput').value;
+      const role = document.getElementById('roleInput').value;
+      const lahir = document.getElementById('lahirInput').value;
+      const gender = document.getElementById('genderInput').value;
+      const alamat = document.getElementById('alamatInput').value;
+      const telepon = document.getElementById('teleponInput').value;
 
-            // Update tampilan profil
-            document.getElementById('namaView').innerText = nama;
-            document.getElementById('emailView').innerText = email;
-            document.getElementById('roleView').innerText = role;
-            document.getElementById('lahirView').innerText = lahir;
-            document.getElementById('genderView').innerText = gender;
-            document.getElementById('alamatView').innerText = alamat;
-            document.getElementById('teleponView').innerText = telepon;
+      document.getElementById('namaView').innerText = nama;
+      document.getElementById('emailView').innerText = email;
+      document.getElementById('roleView').innerText = role;
+      document.getElementById('lahirView').innerText = lahir;
+      document.getElementById('genderView').innerText = gender;
+      document.getElementById('alamatView').innerText = alamat;
+      document.getElementById('teleponView').innerText = telepon;
 
-            toggleEdit(false);
-        }
-    </script>
+      toggleEdit(false);
+    }
+  </script>
 </body>
-
 </html>
