@@ -17,8 +17,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .container {
@@ -109,7 +107,7 @@
             height: 20px;
             width: 20px;
             left: 4px;
-            bottom:  3px;
+            bottom: 3px;
             background-color: white;
             border-radius: 50%;
             transition: 0.4s;
@@ -163,6 +161,8 @@
             text-align: center;
             margin-bottom: 10px;
             box-sizing: border-box;
+            border: none;
+            cursor: pointer;
         }
 
         .btn.logout {
@@ -211,6 +211,27 @@
 
         .tindak-lanjut a:hover {
             text-decoration: underline;
+        }
+
+        #chatBox {
+            display: none;
+            margin-top: 15px;
+        }
+
+        #chatBox textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        #balasanAdmin {
+            margin-top: 15px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
         }
     </style>
 </head>
@@ -264,10 +285,11 @@
             </div>
         </div>
 
+        <!-- Bagian Pencari Relawan -->
         <div class="section" id="bagianResponRelawan" style="display: none;">
             <h3>Respon Relawan yang kamu pilih</h3>
             <button class="btn" onclick="cekResponRelawan()">Lihat Respon Relawan</button>
-            <table id="tabelResponRelawan" style="display:none; margin-top: 10px;">
+            <table id="tabelResponRelawan" style="display:none;">
                 <thead>
                     <tr>
                         <th>Nama Relawan</th>
@@ -284,6 +306,21 @@
             <a href="permintaan-konfirmasi.html" class="btn">Lihat Relawan yang Menunggu Konfirmasi</a>
         </div>
 
+        <div class="section" id="bagianStatusKegiatan" style="display: none;">
+            <h3>Status Kegiatan yang Dikelola</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Kegiatan</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyStatusKegiatan"></tbody>
+            </table>
+        </div>
+
+        <!-- Bagian Relawan -->
         <div class="section" id="bagianStatusLamaran" style="display: none;">
             <h3>Status Lamaran Kegiatan</h3>
             <table>
@@ -312,7 +349,7 @@
                         <td>Bersih Sungai</td>
                         <td>15 Juli 2026</td>
                         <td class="status-ditolak">Ditolak</td>
-                        <td class="tindak-lanjut">Relawan penuh silahkan kegiatan lain yang tersedia</td>
+                        <td class="tindak-lanjut">Relawan penuh, silakan cari kegiatan lain</td>
                     </tr>
                 </tbody>
             </table>
@@ -322,7 +359,15 @@
             <h3>Menu Profil</h3>
             <a href="laporan.html" class="btn">Laporan Kegiatan</a>
             <a href="aturprofil.html" class="btn">Edit Profil</a>
+            <button class="btn" onclick="toggleChatBox()">Lapor ke Admin</button>
+            <div id="chatBox">
+                <textarea id="pesanUser" rows="4" placeholder="Tulis laporan atau keluhan Anda..."></textarea>
+                <button class="btn" style="margin-top: 10px;" onclick="kirimPesan()">Kirim Pesan</button>
+                <div id="balasanAdmin">✅ Admin akan segera meninjau laporan Anda.</div>
+            </div>
             <a href="login.html" class="btn logout">Logout</a>
+
+            
         </div>
     </div>
 
@@ -362,6 +407,12 @@
             { nama: "Riko Ahmad", respon: "MENERIMA", kegiatan: "Bersih Sungai" }
         ];
 
+        const dataKegiatanDikelola = [
+            { nama: "Bakti Sosial Pengobatan Gratis", tanggal: "5 Juli 2026", status: "Sudah Selesai" },
+            { nama: "Kelas Belajar Anak", tanggal: "20 Juli 2026", status: "Belum Terlaksana" },
+            { nama: "Pembersihan Pantai", tanggal: "2 Juli 2026", status: "Sudah Selesai" }
+        ];
+
         function cekResponRelawan() {
             const table = document.getElementById("tabelResponRelawan");
             const tbody = document.getElementById("tbodyRespon");
@@ -380,15 +431,51 @@
             });
         }
 
+        function tampilkanStatusKegiatan() {
+            const tbody = document.getElementById("tbodyStatusKegiatan");
+            tbody.innerHTML = "";
+
+            dataKegiatanDikelola.forEach(item => {
+                const warna = item.status === "Sudah Selesai" ? "green" : "orange";
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item.nama}</td>
+                    <td>${item.tanggal}</td>
+                    <td style="color: ${warna}; font-weight: bold;">${item.status}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
         function tampilkanBerdasarkanMode() {
             const mode = document.getElementById("modeSelect").value;
+            const isPencari = (mode === "pencari");
 
-            document.getElementById("bagianResponRelawan").style.display = (mode === "pencari") ? "block" : "none";
-            document.getElementById("bagianManajemen").style.display = (mode === "pencari") ? "block" : "none";
+            document.getElementById("bagianResponRelawan").style.display = isPencari ? "block" : "none";
+            document.getElementById("bagianManajemen").style.display = isPencari ? "block" : "none";
+            document.getElementById("bagianStatusKegiatan").style.display = isPencari ? "block" : "none";
             document.getElementById("bagianStatusLamaran").style.display = (mode === "relawan") ? "block" : "none";
+
+            if (isPencari) tampilkanStatusKegiatan();
+        }
+
+        function toggleChatBox() {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+            document.getElementById("balasanAdmin").style.display = "none";
+        }
+
+        function kirimPesan() {
+            const pesan = document.getElementById("pesanUser").value.trim();
+            if (!pesan) {
+                alert("Pesan tidak boleh kosong.");
+                return;
+            }
+            document.getElementById("pesanUser").value = "";
+            document.getElementById("balasanAdmin").style.display = "block";
         }
 
         window.onload = tampilkanBerdasarkanMode;
     </script>
 </body>
-</html>  
+</html>
